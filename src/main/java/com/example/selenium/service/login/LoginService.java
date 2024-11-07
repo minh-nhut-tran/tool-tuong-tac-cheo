@@ -1,4 +1,4 @@
-package com.example.selenium.service;
+package com.example.selenium.service.login;
 
 
 import com.example.selenium.model.User;
@@ -25,14 +25,17 @@ public class LoginService implements ILoginService{
 
                 //Get body response
                 String body = response.getBody();
+                System.out.println(body);
                 Gson gson = new Gson();
                 User user = gson.fromJson(body,User.class);
                 if(user.getStatus().equals("success")){
                     //Get cookie on headers response
                     List<String> cookies  = response.getHeaders().get("Set-Cookie");
+                    System.out.println(response.getHeaders());
+                    System.out.println(cookies.toString());
                     account.setSession(cookies.get(0).split(";")[0].trim());
                     account.setAccessToken(accessToken);
-                    account.setXu(user.getData().getSodu());
+                    account.setBalance(user.getData().getSodu());
                     account.setUser(user.getData().getUser());
                     account.setActive(true);
                     return account;

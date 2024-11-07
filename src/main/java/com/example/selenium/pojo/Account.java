@@ -7,7 +7,7 @@ import lombok.Data;
 public class Account {
     private String accessToken;
     private String session;
-    private int xu;
+    private int balance;
     private String user;
     private boolean isActive;
 }

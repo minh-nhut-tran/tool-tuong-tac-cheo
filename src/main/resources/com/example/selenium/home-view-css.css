@@ -1,0 +1,55 @@
+.navigator{
+    -fx-border-width: 0px 1px 0px 0px;
+    -fx-border-color: rgba(255,255,255,0.1);
+}
+.header{
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-color: rgba(255,255,255,0.1);
+}
+
+.header-table-line{
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-color: rgba(255,255,255,0.1);
+}
+
+.active-navigator{
+    -fx-background-color: linear-gradient(to right, rgba(242, 90, 201, 0.40) 0%, rgba(242, 90, 201, 0.10) 9.63%, rgba(52, 56, 62, 1) 30.2%);
+}
+.active-navigator-text{
+    -fx-text-fill: rgba(255,255,255,0.8);
+}
+.active-navigator-icon{
+    -fx-fill:rgba(255,255,255,0.8) ;
+}
+.notifications{
+    -fx-border-width: 0px 1px 0px 1px;
+    -fx-border-color: rgba(255,255,255,0.1);
+}
+
+.account-button-non-active{
+    -fx-background-color: #34383E;
+    -fx-background-radius: 10;
+}
+.account-button-facebook-active{
+    -fx-background-color: #0866FF;
+    -fx-background-radius: 10;
+}
+.account-button-youtube-active{
+    -fx-background-color: #FF0033;
+    -fx-background-radius: 10;
+}
+.account-button-tiktok-active{
+    -fx-background-color: #121212;
+    -fx-background-radius: 10;
+}
+.account-button-add {
+    -fx-background-color: #34383E;
+    -fx-background-radius: 100;;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color:  #292C35;
+}
+.scroll-pane .scroll-bar:vertical {
+    -fx-opacity: 0;
+}

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane blendMode="DARKEN" cache="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="832.0" prefWidth="1280.0" style="-fx-background-color: #292C35;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.selenium.controller.AutomationController" >
+    <left>
+        <VBox alignment="CENTER" prefWidth="250.0" spacing="20.0" styleClass="navigator" stylesheets="@home-view-css.css" BorderPane.alignment="CENTER">
+
+            <children>
+                <HBox
+                        userData="home"  onMouseClicked="#switchScreen"
+                        alignment="CENTER_LEFT" prefHeight="70.0" spacing="25.0">
+                    <children>
+                        <SVGPath content="M6.33604 4.75583C8.98305 2.83266 10.3066 1.87107 11.8181 1.81562C11.9393 1.81117 12.0607 1.81117 12.182 1.81562C13.6935 1.87107 15.017 2.83266 17.664 4.75583C20.311 6.679 21.6345 7.64059 22.1543 9.06098C22.196 9.17492 22.2335 9.29036 22.2668 9.40705C22.6811 10.8617 22.1756 12.4176 21.1645 15.5294L19.4563 20.7868C19.1848 21.6222 18.4064 22.1878 17.528 22.1878C16.4083 22.1878 15.5005 21.28 15.5005 20.1603V17.4318C15.5005 16.3811 14.6488 15.5294 13.5981 15.5294H10.4019C9.35122 15.5294 8.49948 16.3811 8.49948 17.4318V20.1603C8.49948 21.28 7.59175 22.1878 6.472 22.1878C5.59365 22.1878 4.81518 21.6222 4.54376 20.7868L2.83551 15.5294C1.82444 12.4176 1.3189 10.8617 1.73325 9.40705C1.76649 9.29036 1.80399 9.17492 1.84569 9.06098C2.36551 7.64059 3.68902 6.679 6.33604 4.75583Z&#10;" fill="#ffffff66" />
+                        <Label text="Dashboard" textFill="#ffffff66">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Label>
+                    </children>
+                    <padding>
+                        <Insets left="30.0" right="30.0" />
+                    </padding>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </HBox>
+                <HBox
+                        userData="automation"  onMouseClicked="#switchScreen"
+                        alignment="CENTER_LEFT" prefHeight="70.0" spacing="25.0" style="-fx-background-radius: 20;" stylesheets="@home-view-css.css">
+                    <children>
+                        <SVGPath content="M15.0733 5.20654C13.3412 4.21896 11.9958 3.45183 10.9031 2.95418C9.80638 2.45466 8.85435 2.17257 7.92862 2.26865C6.45941 2.42116 5.1219 3.18242 4.25027 4.36721C3.69972 5.11557 3.47048 6.07608 3.36002 7.26521C3.24999 8.44959 3.25 9.98465 3.25 11.9588V12.0411C3.24999 14.0153 3.24999 15.5504 3.36002 16.7347C3.47048 17.9239 3.69972 18.8844 4.25027 19.6327C5.1219 20.8175 6.45941 21.5788 7.92862 21.7313C8.85435 21.8274 9.80638 21.5453 10.9031 21.0458C11.9958 20.5481 13.3412 19.781 15.0732 18.7934L15.1435 18.7533C16.8755 17.7658 18.2209 16.9987 19.2038 16.3129C20.1894 15.6252 20.916 14.9503 21.297 14.1052C21.901 12.7654 21.901 11.2346 21.297 9.89473C20.916 9.04969 20.1894 8.37477 19.2038 7.68703C18.2209 7.00126 16.8755 6.23412 15.1435 5.24661L15.0733 5.20654Z" fill="#ffffffcc" styleClass="active-navigator-icon" />
+                        <Label styleClass="active-navigator-text" stylesheets="@home-view-css.css" text="Automation" textFill="#ffffff66">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </Label>
+                    </children>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                    <padding>
+                        <Insets left="30.0" right="30.0" />
+                    </padding>
+                    <styleClass>
+                        <String fx:value="active-navigator" />
+
+                          </styleClass>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </HBox>
+                <HBox
+                        userData="account"  onMouseClicked="#switchScreen"
+                        alignment="CENTER_LEFT" prefHeight="70.0" spacing="25.0">
+                    <children>
+                        <SVGPath content="M12 2C9.37665 2 7.25 4.12665 7.25 6.75C7.25 9.37335 9.37665 11.5 12 11.5C14.6234 11.5 16.75 9.37335 16.75 6.75C16.75 4.12665 14.6234 2 12 2Z&#10;M9 13C6.37665 13 4.25 15.1266 4.25 17.75C4.25 20.3734 6.37665 22.5 9 22.5H15C17.6234 22.5 19.75 20.3734 19.75 17.75C19.75 15.1266 17.6234 13 15 13H9Z" fill="#ffffff66">
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                        </SVGPath>
+                        <Label text="Account" textFill="#ffffff66">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Label>
+                    </children>
+                    <padding>
+                        <Insets left="30.0" right="30.0" />
+                    </padding>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </HBox>
+                <HBox
+                        userData="setting"  onMouseClicked="#switchScreen"
+                        alignment="CENTER_LEFT" prefHeight="70.0" spacing="25.0">
+                    <children>
+                        <SVGPath content="M9.75 12C9.75 10.7574 10.7574 9.75002 12 9.75002C13.2426 9.75002 14.25 10.7574 14.25 12C14.25 13.2427 13.2426 14.25 12 14.25C10.7574 14.25 9.75 13.2427 9.75 12Z&#10;M8.58523 3.2323C9.56564 -0.203083 14.4342 -0.203084 15.4147 3.2323C15.7184 4.2967 16.812 4.92806 17.8857 4.65893C21.351 3.7903 23.7853 8.00664 21.3004 10.5734C20.5305 11.3687 20.5305 12.6314 21.3004 13.4266C23.7853 15.9934 21.351 20.2097 17.8857 19.3411C16.812 19.072 15.7184 19.7033 15.4147 20.7677C14.4342 24.2031 9.56564 24.2031 8.58523 20.7677C8.28146 19.7033 7.18792 19.072 6.11423 19.3411C2.6489 20.2097 0.214599 15.9934 2.69952 13.4266C3.46944 12.6314 3.46944 11.3687 2.69952 10.5734C0.214599 8.00664 2.6489 3.7903 6.11423 4.65893C7.18792 4.92806 8.28146 4.2967 8.58523 3.2323ZM12 8.25002C9.92893 8.25002 8.25 9.92895 8.25 12C8.25 14.0711 9.92893 15.75 12 15.75C14.0711 15.75 15.75 14.0711 15.75 12C15.75 9.92895 14.0711 8.25002 12 8.25002Z" fill="#ffffff66">
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                        </SVGPath>
+                        <Label text="Setting" textFill="#ffffff66">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Label>
+                    </children>
+                    <padding>
+                        <Insets left="30.0" right="30.0" />
+                    </padding>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </HBox>
+            </children>
+            <padding>
+                <Insets left="20.0" />
+            </padding>
+        </VBox>
+    </left>
+    <center>
+        <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <children>
+                <HBox prefHeight="100.0" prefWidth="200.0" styleClass="header" stylesheets="@home-view-css.css">
+                    <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label text="Balance: " textFill="#ffffff80">
+                                    <font>
+                                        <Font name="System Bold" size="18.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="balance" text="30029" textFill="#18fa0c">
+                                    <font>
+                                        <Font size="17.0" />
+                                    </font>
+                                </Label>
+                                <Label text="XU" textFill="#18fa0c">
+                                    <font>
+                                        <Font size="17.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefWidth="120.0" styleClass="notifications" HBox.hgrow="NEVER">
+                            <children>
+                                <HBox alignment="CENTER" maxHeight="40.0" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #34383E; -fx-background-radius: 10;">
+                                    <children>
+                                        <SVGPath content="M5.49841 7.59536C5.07724 4.22603 7.70442 1.25 11.1 1.25H12.8029C16.202 1.25 18.832 4.22918 18.4104 7.60208L18.3458 8.11901C18.2208 9.11912 18.5844 10.1183 19.3229 10.8042L19.3668 10.845C20.9801 12.3432 21.2932 14.7799 20.1111 16.6373C19.3385 17.8513 18.0431 18.6235 16.6225 18.7358L16.4312 19.0636C15.4184 20.7998 13.8404 21.75 12.1834 21.75C10.5264 21.75 8.94835 20.7998 7.93556 19.0636L7.74728 18.7409C6.05598 18.6356 4.54092 17.6282 3.79477 16.09L3.69142 15.8769C2.84477 14.1315 3.24086 12.0375 4.66654 10.7219C5.35455 10.0871 5.69388 9.15916 5.57776 8.23021L5.49841 7.59536ZM9.52013 18.75C10.2795 19.7877 11.2623 20.25 12.1834 20.25C13.1045 20.25 14.0873 19.7877 14.8467 18.75H9.52013Z" fill="#ffffff66" />
+                                    </children>
+                                    <HBox.margin>
+                                        <Insets />
+                                    </HBox.margin>
+                                </HBox>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT" pickOnBounds="false" prefWidth="300.0" spacing="15.0">
+                            <padding>
+                                <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
+                            </padding>
+                            <children>
+                                <Label fx:id="userName" text="tranminhnhut2912" textFill="WHITE">
+                                    <font>
+                                        <Font size="15.0" />
+                                    </font>
+                                </Label>
+                                <Circle fill="DODGERBLUE" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                            </children>
+                        </HBox>
+                    </children>
+                    <padding>
+                        <Insets left="40.0" right="40.0" />
+                    </padding>
+                </HBox>
+            </children>
+        </VBox>
+    </center>
+</BorderPane>

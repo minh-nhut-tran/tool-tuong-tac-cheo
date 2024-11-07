@@ -1,4 +1,14 @@
 package com.example.selenium.pojo;
 
-public class Facebook {
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@EqualsAndHashCode(callSuper = true)
+@Data
+class Facebook extends AccountSocial{
+
+    private String facebookID;
+    private String name;
+    private String type;
+
 }

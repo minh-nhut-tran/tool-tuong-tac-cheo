@@ -8,12 +8,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class HomeController implements Initializable {
-
+public class SettingController  implements Initializable {
 
     @FXML
     private Label balance;
@@ -22,7 +22,7 @@ public class HomeController implements Initializable {
     private Label userName;
 
 
-    private  INavigationService navigationService;
+    private INavigationService navigationService;
 
     private Account accountData;
 
@@ -46,7 +46,6 @@ public class HomeController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         navigationService = new NavigationService();
     }
-
 
 
 }

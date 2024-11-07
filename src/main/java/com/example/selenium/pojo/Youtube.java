@@ -1,4 +1,11 @@
 package com.example.selenium.pojo;
 
-public class Youtube {
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@EqualsAndHashCode(callSuper = true)
+@Data
+public class Youtube extends AccountSocial{
+    private String chanelID;
+    private String name;
 }

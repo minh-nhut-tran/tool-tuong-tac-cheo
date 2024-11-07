@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="container_account" style="-fx-background-color: #292C35;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+   <children>
+      <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" prefHeight="63.0" styleClass="header-table-line" stylesheets="@home-view-css.css">
+         <children>
+            <Label fx:id="no" contentDisplay="CENTER" prefWidth="100.0" text="No." textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="tiktokID" prefWidth="250.0" text="TiktokID" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="name" prefWidth="300.0" text="Name" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="status" prefWidth="150.0" text="Status" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label maxWidth="1.7976931348623157E308" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets bottom="2.0" left="20.0" right="20.0" top="2.0" />
+         </padding>
+      </HBox>
+   </children>
+</VBox>
