@@ -31,7 +31,7 @@ public class EncryptRSA {
             fos.write(strEncrypt.getBytes());
             fos.close();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -53,7 +53,7 @@ public class EncryptRSA {
             messageDecryption = new String(decryptOut);
             return messageDecryption;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
         return null;
     }

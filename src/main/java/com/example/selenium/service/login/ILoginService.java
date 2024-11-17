@@ -6,4 +6,5 @@ public interface ILoginService {
 
     public Account loginByAccessToken(String accessToken);
 
+    public String getAccessTokenAvailable();
 }

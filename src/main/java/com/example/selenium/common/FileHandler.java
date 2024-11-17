@@ -21,15 +21,15 @@ public class FileHandler {
     }
 
 
-    public static boolean checkFileExist(String fileName) {
-        File directory = new File(CurrentDirectory.currentDirectoryFacebook);
+    public static boolean checkFileExist(String fileName, String pathName) {
+        File directory = new File(pathName);
         if (!directory.exists()) return true;
         for (File file : Objects.requireNonNull(directory.listFiles())) {
             if (file.isFile() && file.getName().equals(fileName)) {
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
 
