@@ -17,7 +17,6 @@ public class Facebook {
     public Facebook(String facebookID, String name, boolean status, String type) {
         this.facebookID = facebookID;
         this.name = name;
-
         this.status = status;
         this.type = type;
     }

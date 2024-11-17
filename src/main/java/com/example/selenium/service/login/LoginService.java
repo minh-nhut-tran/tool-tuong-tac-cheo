@@ -1,6 +1,8 @@
 package com.example.selenium.service.login;
 
 
+import com.example.selenium.common.FileHandler;
+import com.example.selenium.common.PairKeyRSA;
 import com.example.selenium.model.User;
 import com.example.selenium.pojo.Account;
 import com.google.gson.Gson;
@@ -25,19 +27,22 @@ public class LoginService implements ILoginService{
 
                 //Get body response
                 String body = response.getBody();
-                System.out.println(body);
                 Gson gson = new Gson();
                 User user = gson.fromJson(body,User.class);
                 if(user.getStatus().equals("success")){
                     //Get cookie on headers response
                     List<String> cookies  = response.getHeaders().get("Set-Cookie");
-                    System.out.println(response.getHeaders());
-                    System.out.println(cookies.toString());
                     account.setSession(cookies.get(0).split(";")[0].trim());
                     account.setAccessToken(accessToken);
                     account.setBalance(user.getData().getSodu());
                     account.setUser(user.getData().getUser());
                     account.setActive(true);
+
+                    if(FileHandler.checkFileExist("publicKey.rsa")
+                            && FileHandler.checkFileExist("privateKey.rsa")){
+                        PairKeyRSA.securityKeyPairGenerate();
+                    }
+
                     return account;
                 }
             }catch (Exception e){
@@ -45,5 +50,8 @@ public class LoginService implements ILoginService{
             }
             return account;
         }
+
+
+
 
 }

@@ -20,7 +20,6 @@ public class AccountYoutubeService implements IAccountYoutubeService{
 
         List<HBox> listAccounts = new ArrayList<>();
         try {
-
             ListIterator<Youtube> iterator = accounts.listIterator();
             while(iterator.hasNext()){
                 Youtube youtube = iterator.next();

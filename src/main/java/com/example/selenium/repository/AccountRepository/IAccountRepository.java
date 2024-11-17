@@ -1,4 +1,4 @@
-package com.example.selenium.repository;
+package com.example.selenium.repository.AccountRepository;
 
 
 import com.example.selenium.pojo.AccountSocial;

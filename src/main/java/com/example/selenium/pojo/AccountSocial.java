@@ -8,4 +8,5 @@ public class AccountSocial {
     private String password;
     private String cookie;
     private String status;
+    private String profile;
 }

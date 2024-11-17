@@ -5,7 +5,7 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-class Facebook extends AccountSocial{
+public class Facebook extends AccountSocial{
 
     private String facebookID;
     private String name;

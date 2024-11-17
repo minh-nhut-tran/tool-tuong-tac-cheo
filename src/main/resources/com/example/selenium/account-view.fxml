@@ -216,7 +216,7 @@
                         <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
                      </padding>
                      <children>
-                        <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="70.0" prefWidth="70.0" styleClass="account-button-add" stylesheets="@home-view-css.css">
+                        <HBox onMouseClicked="#addAccount" alignment="CENTER" maxHeight="-Infinity" prefHeight="70.0" prefWidth="70.0" styleClass="account-button-add" stylesheets="@home-view-css.css">
                            <children>
                               <SVGPath content="M18.4571 1.45714C18.4571 0.652385 17.8048 0 17 0C16.1952 0 15.5429 0.652385 15.5429 1.45714L15.5429 15.5429H1.45714C0.652385 15.5429 0 16.1952 0 17C0 17.8048 0.652385 18.4571 1.45714 18.4571H15.5429V32.5429C15.5429 33.3476 16.1952 34 17 34C17.8048 34 18.4571 33.3476 18.4571 32.5429V18.4571H32.5429C33.3476 18.4571 34 17.8048 34 17C34 16.1952 33.3476 15.5429 32.5429 15.5429H18.4571L18.4571 1.45714Z&#10;" fill="#ffffff66" />
                            </children>

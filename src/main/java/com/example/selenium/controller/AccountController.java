@@ -13,10 +13,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -36,6 +41,8 @@ public class AccountController  implements Initializable {
     private HBox youtube;
     @FXML
     private HBox tiktok;
+
+    private String state;
     private INavigationService navigationService;
     private IAccountFacebookService accountFacebookService;
     private IAccountTiktokService accountTiktokService;
@@ -64,6 +71,7 @@ public class AccountController  implements Initializable {
             VBox header = loader.load();
             containerAccount.getChildren().add(0,header);
             containerContentAccount.getChildren().addAll(accountFacebookService.loadAccountFacebook());
+            this.state = "face";
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -85,6 +93,7 @@ public class AccountController  implements Initializable {
                     VBox header = loader.load();
                     containerAccount.getChildren().add(0,header);
                     containerContentAccount.getChildren().addAll(accountFacebookService.loadAccountFacebook());
+                    this.state = "face";
                     break;
                 case "youtube":
                     youtube.getStyleClass().add("account-button-youtube-active");
@@ -92,6 +101,7 @@ public class AccountController  implements Initializable {
                     VBox headerYoutube = loaderYoutube.load();
                     containerAccount.getChildren().add(0, headerYoutube);
                     containerContentAccount.getChildren().addAll(accountYoutubeService.loadAccountYoutube());
+                    this.state = "youtube";
                     break;
                 case "tiktok":
                     tiktok.getStyleClass().add("account-button-tiktok-active");
@@ -99,10 +109,33 @@ public class AccountController  implements Initializable {
                     VBox headerTiktok = loaderTiktok.load();
                     containerAccount.getChildren().add(0, headerTiktok);
                     containerContentAccount.getChildren().addAll(accountTiktokService.loadAccountTiktok());
+                    this.state = "tiktok";
                     break;
             }
         }catch (Exception e){
             System.out.println(e.getMessage());
+        }
+    }
+
+    @FXML
+    public void addAccount(){
+        try {
+            if(this.state == null) throw new Exception("state is not valid!");
+
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../login-"+this.state+"-view.fxml"));
+            Parent root = loader.load();
+
+            LoginFaceController loginFaceController = loader.getController();
+            if(loginFaceController != null) loginFaceController.setData(facebook,youtube,tiktok,containerAccount
+            ,containerContentAccount,state,stage);
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
