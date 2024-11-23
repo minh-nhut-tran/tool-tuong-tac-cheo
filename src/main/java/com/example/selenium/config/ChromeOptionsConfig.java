@@ -28,9 +28,6 @@ public class ChromeOptionsConfig {
         options.addArguments("--disable-gpu");
         options.addArguments("--disable-cpu");
         options.addArguments("--disable-blink-features=AutomationControlled");
-
-
-
         return options;
     }
 

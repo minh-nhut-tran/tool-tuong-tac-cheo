@@ -139,11 +139,16 @@ public class LoginFaceController implements Initializable {
     private boolean checkAccountExistOnSystem(){
         List<AccountSocial> accountsAvailable  = accountFacebookService.getAllAccountFacebook();
         for(AccountSocial accountAvailable : accountsAvailable){
+
+            System.out.println(accountAvailable.getUsername());
+
             if(accountAvailable.getUsername().equals(userName.getText().trim())){
-                if(!usePage.getText().equals("Use page to run?")  &&   pageName.getText().equals(((Facebook)accountAvailable).getName())){
+                if(!usePage.getText().equals("Use page to run?")  &&   pageName.getText().equals(((Facebook)accountAvailable).getName())  &&
+                        ((Facebook)accountAvailable).getType().equals("PAGE")
+                ){
                     alertError("Page already exists in system!");
                     return true;
-                }else if(usePage.getText().equals("Use page to run?")){
+                }else if(usePage.getText().equals("Use page to run?") && ((Facebook)accountAvailable).getType().equals("PROFILE") ){
                     alertError("Account already exists in system!");
                     return true;
                 }

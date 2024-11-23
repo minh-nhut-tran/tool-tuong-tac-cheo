@@ -95,5 +95,21 @@ public class AccountFacebookService implements IAccountFacebookService{
         return accountSocials;
     }
 
+    public AccountSocial getAccountFacebook(String facebookID){
+        return Mapper.mapStringToAccountFacebook(
+                EncryptRSA.decryption(
+                        FileHandler.readFile(
+                                new File(CurrentDirectory.currentDirectoryFacebook+facebookID+".dat"))));
+    }
+
+    @Override
+    public void deleteAccountFacebook(String facebookID) {
+        String pathProfile = "D:\\Youtube\\ChromeProfile\\Facebook\\" + getAccountFacebook(facebookID).getProfile();
+        if(!Directory.deleteDirectory(pathProfile)) System.out.println("Delete profile account unsuccessful!");
+        String pathInformation = CurrentDirectory.currentDirectoryFacebook + facebookID+".dat";
+        System.out.println(pathInformation);
+        if(!FileHandler.deleteFile(pathInformation)) System.out.println("Delete account unsuccessful!");
+    }
+
 
 }

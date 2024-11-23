@@ -1,6 +1,8 @@
 package com.example.selenium.controller;
 
 import com.example.selenium.pojo.Account;
+import com.example.selenium.service.automation.AutomationService;
+import com.example.selenium.service.automation.IAutomationService;
 import com.example.selenium.service.navigation.INavigationService;
 import com.example.selenium.service.navigation.NavigationService;
 import javafx.fxml.FXML;
@@ -24,6 +26,8 @@ public class AutomationController  implements Initializable {
 
     private INavigationService navigationService;
 
+    private IAutomationService automationService;
+
     private Account accountData;
 
 
@@ -44,7 +48,14 @@ public class AutomationController  implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         navigationService = new NavigationService();
+        automationService = new AutomationService();
     }
 
+
+    @FXML
+    public void run() throws InterruptedException {
+        automationService.run("facebook",this.accountData);
+    }
 }

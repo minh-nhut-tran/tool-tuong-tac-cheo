@@ -3,22 +3,25 @@
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane blendMode="DARKEN" cache="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="832.0" prefWidth="1280.0" style="-fx-background-color: #292C35;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.selenium.controller.AutomationController" >
+<BorderPane blendMode="DARKEN" cache="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="832.0" prefWidth="1280.0" style="-fx-background-color: #292C35;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.selenium.controller.AutomationController">
     <left>
         <VBox alignment="CENTER" prefWidth="250.0" spacing="20.0" styleClass="navigator" stylesheets="@home-view-css.css" BorderPane.alignment="CENTER">
 
             <children>
-                <HBox
-                        userData="home"  onMouseClicked="#switchScreen"
-                        alignment="CENTER_LEFT" prefHeight="70.0" spacing="25.0">
+                <HBox alignment="CENTER_LEFT" onMouseClicked="#switchScreen" prefHeight="70.0" spacing="25.0" userData="home">
                     <children>
                         <SVGPath content="M6.33604 4.75583C8.98305 2.83266 10.3066 1.87107 11.8181 1.81562C11.9393 1.81117 12.0607 1.81117 12.182 1.81562C13.6935 1.87107 15.017 2.83266 17.664 4.75583C20.311 6.679 21.6345 7.64059 22.1543 9.06098C22.196 9.17492 22.2335 9.29036 22.2668 9.40705C22.6811 10.8617 22.1756 12.4176 21.1645 15.5294L19.4563 20.7868C19.1848 21.6222 18.4064 22.1878 17.528 22.1878C16.4083 22.1878 15.5005 21.28 15.5005 20.1603V17.4318C15.5005 16.3811 14.6488 15.5294 13.5981 15.5294H10.4019C9.35122 15.5294 8.49948 16.3811 8.49948 17.4318V20.1603C8.49948 21.28 7.59175 22.1878 6.472 22.1878C5.59365 22.1878 4.81518 21.6222 4.54376 20.7868L2.83551 15.5294C1.82444 12.4176 1.3189 10.8617 1.73325 9.40705C1.76649 9.29036 1.80399 9.17492 1.84569 9.06098C2.36551 7.64059 3.68902 6.679 6.33604 4.75583Z&#10;" fill="#ffffff66" />
                         <Label text="Dashboard" textFill="#ffffff66">
@@ -34,9 +37,7 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </HBox>
-                <HBox
-                        userData="automation"  onMouseClicked="#switchScreen"
-                        alignment="CENTER_LEFT" prefHeight="70.0" spacing="25.0" style="-fx-background-radius: 20;" stylesheets="@home-view-css.css">
+                <HBox alignment="CENTER_LEFT" onMouseClicked="#switchScreen" prefHeight="70.0" spacing="25.0" style="-fx-background-radius: 20;" stylesheets="@home-view-css.css" userData="automation">
                     <children>
                         <SVGPath content="M15.0733 5.20654C13.3412 4.21896 11.9958 3.45183 10.9031 2.95418C9.80638 2.45466 8.85435 2.17257 7.92862 2.26865C6.45941 2.42116 5.1219 3.18242 4.25027 4.36721C3.69972 5.11557 3.47048 6.07608 3.36002 7.26521C3.24999 8.44959 3.25 9.98465 3.25 11.9588V12.0411C3.24999 14.0153 3.24999 15.5504 3.36002 16.7347C3.47048 17.9239 3.69972 18.8844 4.25027 19.6327C5.1219 20.8175 6.45941 21.5788 7.92862 21.7313C8.85435 21.8274 9.80638 21.5453 10.9031 21.0458C11.9958 20.5481 13.3412 19.781 15.0732 18.7934L15.1435 18.7533C16.8755 17.7658 18.2209 16.9987 19.2038 16.3129C20.1894 15.6252 20.916 14.9503 21.297 14.1052C21.901 12.7654 21.901 11.2346 21.297 9.89473C20.916 9.04969 20.1894 8.37477 19.2038 7.68703C18.2209 7.00126 16.8755 6.23412 15.1435 5.24661L15.0733 5.20654Z" fill="#ffffffcc" styleClass="active-navigator-icon" />
                         <Label styleClass="active-navigator-text" stylesheets="@home-view-css.css" text="Automation" textFill="#ffffff66">
@@ -62,9 +63,7 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </HBox>
-                <HBox
-                        userData="account"  onMouseClicked="#switchScreen"
-                        alignment="CENTER_LEFT" prefHeight="70.0" spacing="25.0">
+                <HBox alignment="CENTER_LEFT" onMouseClicked="#switchScreen" prefHeight="70.0" spacing="25.0" userData="account">
                     <children>
                         <SVGPath content="M12 2C9.37665 2 7.25 4.12665 7.25 6.75C7.25 9.37335 9.37665 11.5 12 11.5C14.6234 11.5 16.75 9.37335 16.75 6.75C16.75 4.12665 14.6234 2 12 2Z&#10;M9 13C6.37665 13 4.25 15.1266 4.25 17.75C4.25 20.3734 6.37665 22.5 9 22.5H15C17.6234 22.5 19.75 20.3734 19.75 17.75C19.75 15.1266 17.6234 13 15 13H9Z" fill="#ffffff66">
                             <HBox.margin>
@@ -84,9 +83,7 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </HBox>
-                <HBox
-                        userData="setting"  onMouseClicked="#switchScreen"
-                        alignment="CENTER_LEFT" prefHeight="70.0" spacing="25.0">
+                <HBox alignment="CENTER_LEFT" onMouseClicked="#switchScreen" prefHeight="70.0" spacing="25.0" userData="setting">
                     <children>
                         <SVGPath content="M9.75 12C9.75 10.7574 10.7574 9.75002 12 9.75002C13.2426 9.75002 14.25 10.7574 14.25 12C14.25 13.2427 13.2426 14.25 12 14.25C10.7574 14.25 9.75 13.2427 9.75 12Z&#10;M8.58523 3.2323C9.56564 -0.203083 14.4342 -0.203084 15.4147 3.2323C15.7184 4.2967 16.812 4.92806 17.8857 4.65893C21.351 3.7903 23.7853 8.00664 21.3004 10.5734C20.5305 11.3687 20.5305 12.6314 21.3004 13.4266C23.7853 15.9934 21.351 20.2097 17.8857 19.3411C16.812 19.072 15.7184 19.7033 15.4147 20.7677C14.4342 24.2031 9.56564 24.2031 8.58523 20.7677C8.28146 19.7033 7.18792 19.072 6.11423 19.3411C2.6489 20.2097 0.214599 15.9934 2.69952 13.4266C3.46944 12.6314 3.46944 11.3687 2.69952 10.5734C0.214599 8.00664 2.6489 3.7903 6.11423 4.65893C7.18792 4.92806 8.28146 4.2967 8.58523 3.2323ZM12 8.25002C9.92893 8.25002 8.25 9.92895 8.25 12C8.25 14.0711 9.92893 15.75 12 15.75C14.0711 15.75 15.75 14.0711 15.75 12C15.75 9.92895 14.0711 8.25002 12 8.25002Z" fill="#ffffff66">
                             <HBox.margin>
@@ -166,6 +163,242 @@
                         <Insets left="40.0" right="40.0" />
                     </padding>
                 </HBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0" VBox.vgrow="ALWAYS">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+               <children>
+                  <VBox style="-fx-background-color: #2E3239; -fx-background-radius: 30;" VBox.vgrow="ALWAYS">
+                     <padding>
+                        <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                     </padding>
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="60.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="40.0" prefWidth="140.0" style="-fx-background-color: #0866FF; -fx-background-radius: 10;" text="Facebook" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Button fx:id="facebookRun" mnemonicParsing="false" onAction="#run" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #23A31C; -fx-background-radius: 10;" text="Run" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="17.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets left="10.0" right="10.0" />
+                           </padding>
+                        </HBox>
+                        <HBox VBox.vgrow="ALWAYS">
+                           <children>
+                              <GridPane hgap="20.0" HBox.hgrow="ALWAYS">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+                                       <children>
+                                          <Label text="Mode" textFill="WHITE">
+                                             <font>
+                                                <Font name="System Bold" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label stylesheets="@home-view-css.css" text="Auto" textFill="#ffffff99">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.rowIndex="1">
+                                       <children>
+                                          <Label text="Tasks like post/account" textFill="WHITE">
+                                             <font>
+                                                <Font name="System Bold" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField alignment="CENTER" prefHeight="25.0" prefWidth="60.0" promptText="10" style="-fx-background-color: transparent;" styleClass="text-field" stylesheets="@home-view-css.css" text="10" HBox.hgrow="NEVER">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font></TextField>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.columnIndex="1">
+                                       <children>
+                                          <Label text="Tasks like page/account" textFill="WHITE">
+                                             <font>
+                                                <Font name="System Bold" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField alignment="CENTER" prefWidth="50.0" style="-fx-background-color: transparent;" styleClass="text-field" stylesheets="@home-view-css.css" text="10">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font></TextField>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                       <children>
+                                          <Label text="Tasks follow/account" textFill="WHITE">
+                                             <font>
+                                                <Font name="System Bold" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField alignment="CENTER" prefWidth="50.0" style="-fx-background-color: transparent;" styleClass="text-field" stylesheets="@home-view-css.css" text="10">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font></TextField>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.columnIndex="2">
+                                       <children>
+                                          <Label text="Tasks comment/account" textFill="WHITE">
+                                             <font>
+                                                <Font name="System Bold" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField alignment="CENTER" prefWidth="50.0" style="-fx-background-color: transparent;" styleClass="text-field" stylesheets="@home-view-css.css" text="10">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font></TextField>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                       <children>
+                                          <Label text="Tasks share/account" textFill="WHITE">
+                                             <font>
+                                                <Font name="System Bold" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField alignment="CENTER" prefWidth="50.0" style="-fx-background-color: transparent;" styleClass="text-field" stylesheets="@home-view-css.css" text="10">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font></TextField>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </GridPane>
+                           </children>
+                           <padding>
+                              <Insets bottom="30.0" left="25.0" right="25.0" top="30.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox style="-fx-background-color: #2E3239; -fx-background-radius: 30;" VBox.vgrow="ALWAYS">
+                     <padding>
+                        <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                     </padding>
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="60.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="40.0" prefWidth="140.0" style="-fx-background-color: #FF0033; -fx-background-radius: 10;" text="Youtube" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #23A31C; -fx-background-radius: 10;" text="Run" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="17.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <HBox VBox.vgrow="ALWAYS">
+                           <children>
+                              <GridPane HBox.hgrow="ALWAYS">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                              </GridPane>
+                           </children>
+                           <padding>
+                              <Insets bottom="30.0" left="25.0" right="25.0" top="30.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox style="-fx-background-color: #2E3239; -fx-background-radius: 30;" VBox.vgrow="ALWAYS">
+                     <padding>
+                        <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                     </padding>
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="60.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="40.0" prefWidth="140.0" style="-fx-background-color: #121212; -fx-background-radius: 10;" text="Tiktok" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #23A31C; -fx-background-radius: 10;" text="Run" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="17.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <HBox VBox.vgrow="ALWAYS">
+                           <children>
+                              <GridPane HBox.hgrow="ALWAYS">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                              </GridPane>
+                           </children>
+                           <padding>
+                              <Insets bottom="30.0" left="25.0" right="25.0" top="30.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <Label text="Label" />
+               </children>
+            </VBox>
             </children>
         </VBox>
     </center>

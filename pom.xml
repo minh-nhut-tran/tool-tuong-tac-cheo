@@ -22,7 +22,6 @@
             <version>1.4.9</version>
         </dependency>
 
-
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
@@ -84,7 +83,6 @@
                 <version>0.0.8</version>
                 <executions>
                     <execution>
-
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>com.example.selenium/com.example.selenium.HelloApplication</mainClass>
@@ -97,6 +95,21 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <!-- Build an executable JAR -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <mainClass>com.example.selenium.Main</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
             </plugin>
         </plugins>
     </build>

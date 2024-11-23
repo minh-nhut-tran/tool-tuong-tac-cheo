@@ -77,6 +77,7 @@ public class AccountController  implements Initializable {
         }
 
     }
+
     @FXML
     public void changeTypeAccount(MouseEvent event){
         try {
@@ -138,5 +139,7 @@ public class AccountController  implements Initializable {
             throw new RuntimeException(e);
         }
     }
+
+
 
 }

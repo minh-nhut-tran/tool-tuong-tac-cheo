@@ -21,6 +21,14 @@ public class FileHandler {
     }
 
 
+    public static boolean deleteFile(String path){
+        File file = new File(path);
+        if(file.exists()){
+           return  file.delete();
+        }
+        return false;
+    }
+
     public static boolean checkFileExist(String fileName, String pathName) {
         File directory = new File(pathName);
         if (!directory.exists()) return true;
@@ -43,6 +51,7 @@ public class FileHandler {
             while ((bytesRead = fis.read(c)) != -1) {
                 result = new String(c, 0, bytesRead);
             }
+            fis.close();
         }catch (Exception e){
             System.out.println(e.getMessage());
         }

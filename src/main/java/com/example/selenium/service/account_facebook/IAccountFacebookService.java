@@ -14,4 +14,6 @@ public interface IAccountFacebookService {
     public boolean loginAccountFacebook(AccountSocial account) throws InterruptedException;
 
     public List<AccountSocial> getAllAccountFacebook();
+
+    public void deleteAccountFacebook(String facebookID);
 }

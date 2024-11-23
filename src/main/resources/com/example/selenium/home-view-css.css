@@ -53,3 +53,6 @@
 .scroll-pane .scroll-bar:vertical {
     -fx-opacity: 0;
 }
+.text-field {
+    -fx-text-fill: rgba(255,255,255,0.4);
+}

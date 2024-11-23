@@ -38,6 +38,6 @@ build/
 .DS_Store
 
 
-### Mac OS ###
-!**/src/main/resources/cookie_facebook/privateKey.rsa
-!**/src/main/resources/cookie_facebook/publicKey.rsa
+### key ###
+src/main/resources/cookie_facebook/privateKey.rsa
+src/main/resources/cookie_facebook/publicKey.rsa

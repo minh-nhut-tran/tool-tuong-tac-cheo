@@ -25,13 +25,12 @@ public class Mapper {
             AccountSocial account = new Facebook();
             String username = StringHandler.getValueFromKeyInString(accountString,"username");
             String password = StringHandler.getValueFromKeyInString(accountString,"password");
-            String cookie = StringHandler.getValueFromKeyInString(accountString,"cookie");
+            String cookie = StringHandler.getValueFromCookie(accountString,"cookie");
             String status = StringHandler.getValueFromKeyInString(accountString,"status");
             String profile = StringHandler.getValueFromKeyInString(accountString,"profile");
             String facebookID = StringHandler.getValueFromKeyInString(accountString,"facebookID");
             String name = StringHandler.getValueFromKeyInString(accountString,"name");
             String type = StringHandler.getValueFromKeyInString(accountString,"type");
-
             account.setUsername(username.trim());
             account.setPassword(password.trim());
             account.setCookie(cookie.trim());
@@ -40,6 +39,7 @@ public class Mapper {
             ((Facebook)account).setFacebookID(facebookID.trim());
             ((Facebook)account).setName(name.trim());
             ((Facebook)account).setType(type);
+
             return account;
         }
 }

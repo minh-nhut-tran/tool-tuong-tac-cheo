@@ -1,6 +1,7 @@
 package com.example.selenium.selenium;
 
 import com.example.selenium.common.DirectWindows;
+import com.example.selenium.common.SeleniumHandler;
 import com.example.selenium.pojo.AccountSocial;
 import com.example.selenium.pojo.Facebook;
 import org.openqa.selenium.*;
@@ -79,7 +80,7 @@ public class FacebookSelenium {
     private boolean choosePage(WebDriver driver, AccountSocial accountSocial) throws InterruptedException {
         String pageName = ((Facebook) accountSocial).getName();
         if (pageName == null || pageName.isEmpty()) return false;
-        WebElement profile = getElementFromXpaths(new String[]{
+        WebElement profile = SeleniumHandler.getElementFromXpaths(new String[]{
                 "//div[@aria-label='Your profile' and @role='button']",
                 "//div[@aria-label='Trang cá nhân của bạn' and @role='button']"
         }, driver);
@@ -87,7 +88,7 @@ public class FacebookSelenium {
         Thread.sleep(3000);
         WebElement pageProfile;
         if (
-                (pageProfile = getElementFromXpaths(new String[]{
+                (pageProfile = SeleniumHandler.getElementFromXpaths(new String[]{
                         "//div[@aria-label='Chuyển sang " + pageName.trim() + "' and @role='button']",
                         "//div[@aria-label='Switch to " + pageName.trim() + "' and @role='button']"
                 }, driver)) == null
@@ -107,14 +108,14 @@ public class FacebookSelenium {
         String namePage = ((Facebook) accountSocial).getName();
         if (namePage == null || namePage.isEmpty()) return null;
 
-        WebElement seeAll = getElementFromXpaths(new String[]{
+        WebElement seeAll = SeleniumHandler.getElementFromXpaths(new String[]{
                 "//div[@aria-label='Xem tất cả trang cá nhân' and @role='button']",
                 "//div[@aria-label='See all profiles' and @role='button'"
         }, driver);
         seeAll.click();
 
         Thread.sleep(5000);
-        return getElementFromXpaths(new String[]{
+        return SeleniumHandler.getElementFromXpaths(new String[]{
                 "//div[@role='listitem']//span[text()='" + namePage.trim() + "']/ancestor::div[@role='listitem']"
         }, driver);
     }
@@ -123,16 +124,6 @@ public class FacebookSelenium {
     /*
        tìm kiếm 1 element theo nhiều xpath
     */
-    private WebElement getElementFromXpaths(String[] xpaths, WebDriver driver) {
-        WebElement result = null;
-        for (String xpath : xpaths) {
-            try {
-                result = driver.findElement(By.xpath(xpath));
-            } catch (Exception ignored) {
-            }
-        }
-        return result;
-    }
 
 
 }
