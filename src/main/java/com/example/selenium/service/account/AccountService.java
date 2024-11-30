@@ -9,6 +9,7 @@ import com.example.selenium.service.login.LoginService;
 import com.example.selenium.service.navigation.INavigationService;
 import com.example.selenium.service.navigation.NavigationService;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -22,6 +23,8 @@ public class AccountService implements IAccountService{
 
     public AccountService(){
         accountFacebookService = new AccountFacebookService();
+        loginService = new LoginService();
+        navigationService = new NavigationService();
     }
 
 
@@ -34,18 +37,26 @@ public class AccountService implements IAccountService{
     }
 
     @Override
-    public void delete(String socialType, String socialID, MouseEvent event) throws IOException {
+    public void delete(String socialType, String socialID, Stage stage) throws IOException {
        if(socialType.equals("facebook")){
-           loginService = new LoginService();
-           navigationService = new NavigationService();
             accountFacebookService.deleteAccountFacebook(socialID);
-            navigationService.router("account", loginService.loginByAccessToken(loginService.getAccessTokenAvailable()),event);
+            navigationService.router("account", loginService.loginByAccessToken(loginService.getAccessTokenAvailable()),stage);
        }
     }
+
+
 
     @Override
     public AccountSocial getAccount(String accountID) {
         return null;
+    }
+
+    @Override
+    public void setStatusAccount(String socialType, String socialID,String status, Stage stage) throws IOException {
+        if(socialType.equals("facebook")){
+            accountFacebookService.setStatus(socialID,status);
+            navigationService.router("account", loginService.loginByAccessToken(loginService.getAccessTokenAvailable()),stage);
+        }
     }
 
 

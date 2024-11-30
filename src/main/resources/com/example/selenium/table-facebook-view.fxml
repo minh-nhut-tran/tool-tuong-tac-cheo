@@ -3,23 +3,25 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" prefHeight="63.0" style="-fx-background-color: #292C35;" stylesheets="@home-view-css.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.selenium.controller.TableFacebookController">
+<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" prefHeight="63.0" spacing="20.0" style="-fx-background-color: #292C35;" stylesheets="@home-view-css.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.selenium.controller.TableFacebookController">
    <children>
-      <Label fx:id="no" contentDisplay="CENTER" prefWidth="100.0" text="1" textFill="#ffffff66">
+      <Label fx:id="no" contentDisplay="CENTER" prefWidth="50.0" text="1" textFill="#ffffff66">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="facebookID" prefWidth="250.0" text="8192838912912" textFill="#ffffff66">
+      <Label fx:id="facebookID" prefWidth="200.0" text="8192838912912" textFill="#ffffff66">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="name" prefWidth="300.0" text="Tran Minh Nhut" textFill="#ffffff66">
+      <Label fx:id="name" prefWidth="200.0" text="Tran Minh Nhut" textFill="#ffffff66">
          <font>
             <Font size="16.0" />
          </font>
@@ -29,12 +31,21 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="status" prefWidth="100.0" text="ACTIVE" textFill="#ffffff66">
+      <MenuButton onMouseClicked="#getStage" fx:id="status" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: transparent;" stylesheets="@home-view-css.css" text="ACTIVE" textFill="#ffffff66">
+        <items>
+          <MenuItem
+                  onAction="#setActive"
+                  mnemonicParsing="false" text="ACTIVE" />
+          <MenuItem onAction="#setInActive" mnemonicParsing="false" text="INACTIVE" />
+        </items>
          <font>
             <Font size="16.0" />
          </font>
-      </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="50.0" textAlignment="CENTER" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </MenuButton>
+      <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>

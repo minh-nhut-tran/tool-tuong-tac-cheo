@@ -7,10 +7,13 @@ import com.example.selenium.service.login.LoginService;
 import com.example.selenium.service.navigation.NavigationService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -34,7 +37,7 @@ public class LoginController implements Initializable {
        Account account =  loginService.loginByAccessToken(accessToken.getText().trim());
        if(account.isActive()){
 
-           navigationService.router("home",account,event);
+           navigationService.router("home",account,(Stage)((Node)event.getSource()).getScene().getWindow());
        }else{
            Alert alert = new Alert(Alert.AlertType.ERROR);
            alert.setHeaderText("access token is invalid!");

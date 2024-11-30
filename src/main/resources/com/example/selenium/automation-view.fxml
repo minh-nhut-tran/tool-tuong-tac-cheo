@@ -5,6 +5,8 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -185,7 +187,7 @@
                               </Label>
                               <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <Button fx:id="facebookRun" mnemonicParsing="false" onAction="#run" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #23A31C; -fx-background-radius: 10;" text="Run" textFill="WHITE">
+                                    <Button fx:id="facebookRun" mnemonicParsing="false" onAction="#run" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #23A31C; -fx-background-radius: 10;" text="Run" textFill="WHITE" userData="facebook">
                                        <font>
                                           <Font name="System Bold" size="17.0" />
                                        </font>
@@ -202,7 +204,7 @@
                         </HBox>
                         <HBox VBox.vgrow="ALWAYS">
                            <children>
-                              <GridPane hgap="20.0" HBox.hgrow="ALWAYS">
+                              <GridPane hgap="20.0" vgap="20.0" HBox.hgrow="ALWAYS">
                                 <columnConstraints>
                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -220,14 +222,18 @@
                                                 <Font name="System Bold" size="15.0" />
                                              </font>
                                           </Label>
-                                          <Label stylesheets="@home-view-css.css" text="Auto" textFill="#ffffff99">
+                                          <MenuButton fx:id="modeFacebook" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefWidth="150.0" style="-fx-background-color: #2E3239;" styleClass="border-color-element" stylesheets="@home-view-css.css" text="Auto" textFill="WHITE" userData="facebook">
+                                            <items>
+                                              <MenuItem fx:id="modeFacebookAuto" mnemonicParsing="false" onAction="#setMode" text="Auto" userData="facebookAuto" />
+                                              <MenuItem fx:id="modeFacebookCustomize" mnemonicParsing="false" onAction="#setMode" text="Customize" userData="facebookCustomize" />
+                                            </items>
                                              <font>
                                                 <Font size="15.0" />
                                              </font>
                                              <cursor>
                                                 <Cursor fx:constant="HAND" />
                                              </cursor>
-                                          </Label>
+                                          </MenuButton>
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.rowIndex="1">
@@ -237,7 +243,7 @@
                                                 <Font name="System Bold" size="15.0" />
                                              </font>
                                           </Label>
-                                          <TextField alignment="CENTER" prefHeight="25.0" prefWidth="60.0" promptText="10" style="-fx-background-color: transparent;" styleClass="text-field" stylesheets="@home-view-css.css" text="10" HBox.hgrow="NEVER">
+                                          <TextField fx:id="likePostFacebook" alignment="CENTER" prefHeight="25.0" prefWidth="80.0" promptText="10" style="-fx-background-color: transparent;" styleClass="border-color-element" stylesheets="@home-view-css.css" text="10" HBox.hgrow="NEVER">
                                              <font>
                                                 <Font size="15.0" />
                                              </font></TextField>
@@ -250,7 +256,7 @@
                                                 <Font name="System Bold" size="15.0" />
                                              </font>
                                           </Label>
-                                          <TextField alignment="CENTER" prefWidth="50.0" style="-fx-background-color: transparent;" styleClass="text-field" stylesheets="@home-view-css.css" text="10">
+                                          <TextField fx:id="likePageFacebook" alignment="CENTER" prefWidth="80.0" style="-fx-background-color: transparent;" styleClass="border-color-element" stylesheets="@home-view-css.css" text="10">
                                              <font>
                                                 <Font size="15.0" />
                                              </font></TextField>
@@ -263,7 +269,7 @@
                                                 <Font name="System Bold" size="15.0" />
                                              </font>
                                           </Label>
-                                          <TextField alignment="CENTER" prefWidth="50.0" style="-fx-background-color: transparent;" styleClass="text-field" stylesheets="@home-view-css.css" text="10">
+                                          <TextField fx:id="followFacebook" alignment="CENTER" prefWidth="80.0" style="-fx-background-color: transparent;" styleClass="border-color-element" stylesheets="@home-view-css.css" text="10">
                                              <font>
                                                 <Font size="15.0" />
                                              </font></TextField>
@@ -271,30 +277,18 @@
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.columnIndex="2">
                                        <children>
-                                          <Label text="Tasks comment/account" textFill="WHITE">
+                                          <Label text="Tasks emotion /account" textFill="WHITE">
                                              <font>
                                                 <Font name="System Bold" size="15.0" />
                                              </font>
                                           </Label>
-                                          <TextField alignment="CENTER" prefWidth="50.0" style="-fx-background-color: transparent;" styleClass="text-field" stylesheets="@home-view-css.css" text="10">
+                                          <TextField fx:id="emotionFacebook" alignment="CENTER" prefWidth="80.0" style="-fx-background-color: transparent;" styleClass="border-color-element" stylesheets="@home-view-css.css" text="10">
                                              <font>
                                                 <Font size="15.0" />
                                              </font></TextField>
                                        </children>
                                     </HBox>
-                                    <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                       <children>
-                                          <Label text="Tasks share/account" textFill="WHITE">
-                                             <font>
-                                                <Font name="System Bold" size="15.0" />
-                                             </font>
-                                          </Label>
-                                          <TextField alignment="CENTER" prefWidth="50.0" style="-fx-background-color: transparent;" styleClass="text-field" stylesheets="@home-view-css.css" text="10">
-                                             <font>
-                                                <Font size="15.0" />
-                                             </font></TextField>
-                                       </children>
-                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                  </children>
                               </GridPane>
                            </children>
@@ -332,7 +326,7 @@
                         </HBox>
                         <HBox VBox.vgrow="ALWAYS">
                            <children>
-                              <GridPane HBox.hgrow="ALWAYS">
+                              <GridPane hgap="20.0" vgap="20.0" HBox.hgrow="ALWAYS">
                                 <columnConstraints>
                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -342,6 +336,57 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+                                       <children>
+                                          <Label text="Mode" textFill="WHITE">
+                                             <font>
+                                                <Font name="System Bold" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <MenuButton fx:id="modeYoutube" alignment="CENTER" mnemonicParsing="false" prefWidth="150.0" style="-fx-background-color: #2E3239;" styleClass="border-color-element" stylesheets="@home-view-css.css" text="Auto" textFill="WHITE">
+                                             <items>
+                                                <MenuItem mnemonicParsing="false" text="Auto" />
+                                                <MenuItem mnemonicParsing="false" text="Customize" />
+                                             </items>
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </MenuButton>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.rowIndex="1">
+                                       <children>
+                                          <Label text="Tasks follow/account" textFill="WHITE">
+                                             <font>
+                                                <Font name="System Bold" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField alignment="CENTER" prefHeight="25.0" prefWidth="80.0" promptText="10" style="-fx-background-color: transparent;" styleClass="border-color-element" stylesheets="@home-view-css.css" text="10" HBox.hgrow="NEVER">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </TextField>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.columnIndex="1">
+                                       <children>
+                                          <Label text="Tasks comment/account" textFill="WHITE">
+                                             <font>
+                                                <Font name="System Bold" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField alignment="CENTER" prefWidth="80.0" style="-fx-background-color: transparent;" styleClass="border-color-element" stylesheets="@home-view-css.css" text="10">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </TextField>
+                                       </children>
+                                    </HBox>
+                                 </children>
                               </GridPane>
                            </children>
                            <padding>
@@ -378,7 +423,7 @@
                         </HBox>
                         <HBox VBox.vgrow="ALWAYS">
                            <children>
-                              <GridPane HBox.hgrow="ALWAYS">
+                              <GridPane hgap="20.0" vgap="20.0" HBox.hgrow="ALWAYS">
                                 <columnConstraints>
                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -388,6 +433,71 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+                                       <children>
+                                          <Label text="Mode" textFill="WHITE">
+                                             <font>
+                                                <Font name="System Bold" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <MenuButton fx:id="modeTiktok" alignment="CENTER" mnemonicParsing="false" prefWidth="150.0" style="-fx-background-color: #2E3239;" styleClass="border-color-element" stylesheets="@home-view-css.css" text="Auto" textFill="WHITE">
+                                             <items>
+                                                <MenuItem mnemonicParsing="false" text="Auto" />
+                                                <MenuItem mnemonicParsing="false" text="Customize" />
+                                             </items>
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </MenuButton>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.rowIndex="1">
+                                       <children>
+                                          <Label text="Tasks follow/account" textFill="WHITE">
+                                             <font>
+                                                <Font name="System Bold" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField alignment="CENTER" prefHeight="25.0" prefWidth="80.0" promptText="10" style="-fx-background-color: transparent;" styleClass="border-color-element" stylesheets="@home-view-css.css" text="10" HBox.hgrow="NEVER">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </TextField>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.columnIndex="1">
+                                       <children>
+                                          <Label text="Tasks love post/account" textFill="WHITE">
+                                             <font>
+                                                <Font name="System Bold" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField alignment="CENTER" prefWidth="80.0" style="-fx-background-color: transparent;" styleClass="border-color-element" stylesheets="@home-view-css.css" text="10">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </TextField>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                       <children>
+                                          <Label text="Tasks view/account" textFill="WHITE">
+                                             <font>
+                                                <Font name="System Bold" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField alignment="CENTER" prefWidth="80.0" style="-fx-background-color: transparent;" styleClass="border-color-element" stylesheets="@home-view-css.css" text="10">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </TextField>
+                                       </children>
+                                    </HBox>
+                                 </children>
                               </GridPane>
                            </children>
                            <padding>

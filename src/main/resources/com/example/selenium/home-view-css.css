@@ -10,6 +10,21 @@
 .header-table-line{
     -fx-border-width: 0px 0px 1px 0px;
     -fx-border-color: rgba(255,255,255,0.1);
+
+}
+
+.text-active{
+    -fx-text-fill: green
+}
+.text-inactive{
+    -fx-text-fill: red
+}
+
+
+.border-color-element{
+    -fx-border-width: 1px 1px 1px 1px;
+    -fx-border-color: rgba(255,255,255,0.1);
+    -fx-border-radius: 5px;
 }
 
 .active-navigator{
@@ -55,4 +70,16 @@
 }
 .text-field {
     -fx-text-fill: rgba(255,255,255,0.4);
+}
+menu-button > .arrow-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+.menu-button > .arrow-button > .arrow {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+.menu-item {
+    -fx-cursor: hand;
+    -fx-font-size: 14px;
 }

@@ -8,6 +8,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -39,7 +41,7 @@ public class HomeController implements Initializable {
     @FXML
     public void switchScreen(MouseEvent event) throws IOException {
         String screenName = ((Node)event.getSource()).getUserData().toString().trim();
-        navigationService.router(screenName,this.accountData,event);
+        navigationService.router(screenName,this.accountData,(Stage)((Node)event.getSource()).getScene().getWindow());
     }
 
     @Override

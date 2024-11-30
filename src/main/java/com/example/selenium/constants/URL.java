@@ -8,7 +8,7 @@ public class URL {
     public static final String URL_DO_TASK_LIKE_CHEO_XU_CAO = "https://tuongtaccheo.com/kiemtien/";
     public static final String URL_DO_TASK_LIKE_CHEO_THUONG = "https://tuongtaccheo.com/kiemtien/likepostcheo/";
     public static final String URL_DO_TASK_LIKE_CHEO_VIP = "https://tuongtaccheo.com/kiemtien/likepostvipcheo/";
-
+    public static final String URL_DO_TASK_EMOTION_POST = "https://tuongtaccheo.com/kiemtien/camxucvipcheo/";
     public  static final String URL_LOGIN = "https://tuongtaccheo.com/logintoken.php";
 
 }

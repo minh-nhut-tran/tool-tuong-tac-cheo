@@ -58,7 +58,7 @@ public class AccountController  implements Initializable {
     @FXML
     public void switchScreen(MouseEvent event) throws IOException {
         String screenName = ((Node)event.getSource()).getUserData().toString().trim();
-        navigationService.router(screenName,this.accountData,event);
+        navigationService.router(screenName,this.accountData,(Stage)((Node)event.getSource()).getScene().getWindow());
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

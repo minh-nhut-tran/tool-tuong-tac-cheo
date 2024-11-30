@@ -1,10 +1,8 @@
 package com.example.selenium.selenium;
 
-import com.example.selenium.common.DirectWindows;
-import com.example.selenium.common.EstablishAccount;
-import com.example.selenium.common.FacebookCookieHandler;
-import com.example.selenium.common.SeleniumHandler;
+import com.example.selenium.common.*;
 import com.example.selenium.config.ChromeOptionsConfig;
+import com.example.selenium.constants.CurrentDirectory;
 import com.example.selenium.constants.URL;
 import com.example.selenium.pojo.Account;
 import com.example.selenium.pojo.AccountSocial;
@@ -12,8 +10,11 @@ import com.example.selenium.pojo.Facebook;
 import com.example.selenium.service.account_facebook.AccountFacebookService;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-
+import org.openqa.selenium.interactions.Actions;
+import java.io.File;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 public class FacebookTask {
 
@@ -23,25 +24,23 @@ public class FacebookTask {
         AccountFacebookService accountFacebookService = new AccountFacebookService();
         accountSocials = accountFacebookService.getAllAccountFacebook();
     }
-
-    public void runModeCustomize() {
-
-    }
-
-    public void runModeAutomation(Account account) throws InterruptedException {
+    public void run(Account account, Map<String,Integer> tasks) throws InterruptedException {
         if (accountSocials == null || accountSocials.isEmpty()) return;
+        if(accountSocials.get(0).getStatus().equals("INACTIVE")){
+            accountSocials.remove(0);
+            run(account,tasks);
+        }
         ChromeOptionsConfig options = new ChromeOptionsConfig();
         WebDriver driver = new ChromeDriver(options.setupOptionsChrome("Facebook", accountSocials.get(0).getProfile()));
         EstablishAccount.EstablishAccountFacebook(accountSocials.get(0), account);
         loginWebTTC(driver, account);
-
-        doTasks(driver,10,URL.URL_DO_TASK_LIKE_PAGE_CHEO,"like_page");
-        doTasks(driver,10,URL.URL_DO_TASK_SUB_CHEO,"sub_cheo");
-        doTasks(driver,10,URL.URL_DO_TASK_LIKE_CHEO_VIP,"like_post");
-
+        doTasks(driver,tasks.get("likePageFacebook"),URL.URL_DO_TASK_EMOTION_POST,"emotion_post");
+        doTasks(driver,tasks.get("emotionFacebook"),URL.URL_DO_TASK_LIKE_PAGE_CHEO,"like_page");
+        doTasks(driver,tasks.get("followFacebook"),URL.URL_DO_TASK_SUB_CHEO,"sub_cheo");
+        doTasks(driver,tasks.get("likePostFacebook"),URL.URL_DO_TASK_LIKE_CHEO_VIP,"like_post");
         driver.close();
         accountSocials.remove(0);
-        runModeAutomation(account);
+        run(account,tasks);
     }
 
     private void loginWebTTC(WebDriver driver, Account account) throws InterruptedException {
@@ -51,14 +50,14 @@ public class FacebookTask {
         driver.get(driver.getCurrentUrl());
         Thread.sleep(5000);
     }
-
-
     private void doTasks(WebDriver driver, int numberOfTasks, String urlTask, String type) throws InterruptedException {
+        if(numberOfTasks == 0) return;
         int count = 0;
         driver.get(urlTask);
         Thread.sleep(5000);
         for (WebElement task : getWebElementsTasks(driver)) {
             WebElement doTaskButton = task.findElement(By.cssSelector(".form-group.text-center button"));
+            String taskName = doTaskButton.getText().trim();
             doTaskButton.click();
             Thread.sleep(5000);
             DirectWindows.switchScreenToNextWindow(driver);
@@ -77,6 +76,9 @@ public class FacebookTask {
                     if(currentURL.contains("reel")){
                         doTaskLikeReel(driver);
                     }else doTaskLikePost(driver);
+                    break;
+                case "emotion_post":
+                    doTaskEmotionPost(driver,taskName);
                     break;
             }
             Thread.sleep(5000);
@@ -157,9 +159,81 @@ public class FacebookTask {
         }
     }
 
+    private void doTaskEmotionPost(WebDriver driver, String emotion) throws InterruptedException {
+        Thread.sleep(5000);
+        WebElement dialog = SeleniumHandler.getElementFromXpaths(new String[]{
+                "//div[@class='x78zum5 xdt5ytf x1iyjqo2' and @role='dialog']"
+        },driver);
+        if(dialog == null ) {
+            doTaskEmotionFirstPost(driver,emotion);
+        }else{
+            List<WebElement> emotionButtons = SeleniumHandler.getElementsFromsXpathsOnElement(new String[]{
+                    "//div[@aria-label='Bày tỏ cảm xúc' and @role='button']","//div[@aria-label='Change Like reaction' and @role='button']"
+            },dialog);
+            if(emotionButtons != null){
+                for(WebElement emotionButton : emotionButtons){
+                    try{
+                        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", emotionButton);
+                        Actions actions = new Actions(driver);
+                        actions.moveToElement(emotionButton).perform();
+                        Thread.sleep(2000);
+                        Objects.requireNonNull(findEmotionsButton(emotion, driver)).click();
+                        break;
+                    }catch (Exception ignored){
 
+                    }
+                }
+            }
 
-    private void checkAndAddCookieFacebook(WebDriver driver) {
+        }
+    }
+
+    private void doTaskEmotionFirstPost(WebDriver driver,String emotion) throws InterruptedException {
+        WebElement emotionButton = null;
+        Actions actions = new Actions(driver);
+        try {
+            emotionButton = SeleniumHandler.getElementFromXpaths(new String[]{
+                    "//div[@aria-label='Bày tỏ cảm xúc' and @role='button']","//div[@aria-label='Change Like reaction' and @role='button']"
+            },driver);
+            if(emotionButton != null){
+                actions.moveToElement(emotionButton).perform();
+                Thread.sleep(5000);
+                WebElement emotion_bt = findEmotionsButton(emotion, driver);
+                if(emotion_bt != null) emotion_bt.click();
+            }
+        }catch (Exception ignored){
+            if(emotionButton != null){
+                ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", emotionButton);
+                actions.moveToElement(emotionButton).perform();
+                Thread.sleep(5000);
+                WebElement emotion_bt = findEmotionsButton(emotion, driver);
+                if(emotion_bt != null) emotion_bt.click();
+            }
+        }
+    }
+
+    private WebElement findEmotionsButton(String emotion, WebDriver driver){
+        switch (emotion){
+            case "HAHA":
+                return SeleniumHandler.getElementFromXpaths(
+                        new String[]{"//div[@aria-label='Haha' and @role='button']"}, driver);
+            case "LOVE":
+                return SeleniumHandler.getElementFromXpaths(
+                        new String[]{
+                                "//div[@aria-label='Love' and @role='button']",
+                                "//div[@aria-label='Yêu thích' and @role='button']"},
+                        driver);
+            case "THƯƠNG THƯƠNG":
+                return SeleniumHandler.getElementFromXpaths(
+                        new String[]{
+                                "//div[@aria-label='Thương thương' and @role='button']",
+                                "//div[@aria-label='Care' and @role='button']"
+                        }, driver);
+            default: return null;
+        }
+    }
+
+    private void checkAndAddCookieFacebook(WebDriver driver) throws InterruptedException {
 
         if(((Facebook)accountSocials.get(0)).getType().equals("PAGE")){
             if( driver.manage().getCookieNamed("i_user") == null
@@ -167,6 +241,7 @@ public class FacebookTask {
                     || !driver.manage().getCookieNamed("i_user").getValue().equals(((Facebook)accountSocials.get(0)).getFacebookID()) ){
                 FacebookCookieHandler.addCookieFacebookToWeb(driver, accountSocials.get(0).getCookie());
                 driver.get(driver.getCurrentUrl());
+                checkCookieExpiredAndCreateNew(driver);
             }
         }else if (
                 driver.manage().getCookieNamed("xs") == null
@@ -176,8 +251,42 @@ public class FacebookTask {
         ) {
             FacebookCookieHandler.addCookieFacebookToWeb(driver, accountSocials.get(0).getCookie());
             driver.get(driver.getCurrentUrl());
+            checkCookieExpiredAndCreateNew(driver);
+
         }
 
+    }
+
+    private void checkCookieExpiredAndCreateNew(WebDriver driver ) throws InterruptedException {
+        if(driver.manage().getCookieNamed("xs") != null &&  !driver.manage().getCookieNamed("xs").getValue().isEmpty()) return;
+
+        WebElement login = SeleniumHandler.getElementFromXpaths(new String[]{
+                "//div[@aria-label='Accessible login button' and @role='button']"
+        },driver);
+        login.click();
+        Thread.sleep(5000);
+        WebElement email = SeleniumHandler.getElementFromXpaths(new String[]{
+                "//*[@id='email']"
+        },driver);
+        email.clear();
+        email.sendKeys(accountSocials.get(0).getUsername().trim());
+        Thread.sleep(5000);
+        WebElement password = SeleniumHandler.getElementFromXpaths(new String[]{
+                "//*[@id='pass']"
+        },driver);
+        password.clear();
+        password.sendKeys(accountSocials.get(0).getPassword().trim());
+        Thread.sleep(5000);
+        WebElement loginButton = SeleniumHandler.getElementFromXpaths( new String[]{
+                "//*[@id='loginbutton']"
+        },driver);
+        loginButton.click();
+        Thread.sleep(5000);
+        accountSocials.get(0).setCookie(driver.manage().getCookies().toString());
+        String encryptAccount = Mapper.mapAccountFacebookToString(accountSocials.get(0));
+        EncryptRSA.encryption(encryptAccount,
+                new File(CurrentDirectory.currentDirectoryFacebook + ((Facebook)accountSocials.get(0)).getFacebookID() + ".dat")
+        );
     }
 
     private List<WebElement> getWebElementsTasks(WebDriver driver) {

@@ -16,33 +16,32 @@ import java.util.Objects;
 
 public class NavigationService implements INavigationService {
     @Override
-    public void router(String screenName, Account account, MouseEvent event) throws IOException {
-            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../"+screenName+"-view.fxml")));
-            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            Parent root = loader.load();
-            switch (screenName){
-                case "home":
-                    HomeController homeController = loader.getController();
-                    if(homeController != null) homeController.setAccountData(account);
-                    break;
-                case "automation":
-                    AutomationController automationController = loader.getController();
-                    if(automationController != null) automationController.setAccountData(account);
-                    break;
-                case "account":
-                    AccountController accountController = loader.getController();
-                    if(accountController != null) accountController.setAccountData(account);
-                    break;
-                case "setting":
-                    SettingController settingController = loader.getController();
-                    if(settingController != null) settingController.setAccountData(account);
-                    break;
-            }
+    public void router(String screenName, Account account, Stage stage) throws IOException {
+        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../"+screenName+"-view.fxml")));
+        Parent root = loader.load();
+        switch (screenName){
+            case "home":
+                HomeController homeController = loader.getController();
+                if(homeController != null) homeController.setAccountData(account);
+                break;
+            case "automation":
+                AutomationController automationController = loader.getController();
+                if(automationController != null) automationController.setAccountData(account);
+                break;
+            case "account":
+                AccountController accountController = loader.getController();
+                if(accountController != null) accountController.setAccountData(account);
+                break;
+            case "setting":
+                SettingController settingController = loader.getController();
+                if(settingController != null) settingController.setAccountData(account);
+                break;
+        }
 
-            Scene scene = new Scene(root);
-            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("../../home-view-css.css")).toExternalForm());
-            stage.setScene(scene);
-            stage.centerOnScreen();
-            stage.show();
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("../../home-view-css.css")).toExternalForm());
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.show();
     }
 }

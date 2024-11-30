@@ -16,4 +16,6 @@ public interface IAccountFacebookService {
     public List<AccountSocial> getAllAccountFacebook();
 
     public void deleteAccountFacebook(String facebookID);
+
+    public void setStatus(String facebookID,String status);
 }
