@@ -54,7 +54,6 @@ public class AutomationController  implements Initializable {
     private MenuButton modeYoutube;
 
 
-
     private INavigationService navigationService;
 
     private IAutomationService automationService;
