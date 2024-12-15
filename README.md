@@ -16,4 +16,4 @@ Configurations
 "\path\to\javafx-sdk-23.0.1\lib" is path JavaFX SDK
 
 ### Run with IDE Intellij
-![img.png](img.png)
+![img.png](src/main/resources/image/how-to-run.png)
