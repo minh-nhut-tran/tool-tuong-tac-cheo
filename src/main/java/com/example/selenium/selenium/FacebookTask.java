@@ -47,7 +47,7 @@ public class FacebookTask {
         driver.get(URL.URL_WEB_TTC);
         Thread.sleep(5000);
         driver.manage().addCookie(new Cookie("PHPSESSID", account.getSession().split("=")[1].trim()));
-        driver.get(driver.getCurrentUrl());
+        driver.get(Objects.requireNonNull(driver.getCurrentUrl()));
         Thread.sleep(5000);
     }
     private void doTasks(WebDriver driver, int numberOfTasks, String urlTask, String type) throws InterruptedException {
@@ -73,7 +73,7 @@ public class FacebookTask {
                     break;
                 case "like_post":
                     String currentURL = driver.getCurrentUrl();
-                    if(currentURL.contains("reel")){
+                    if(currentURL != null && currentURL.contains("reel")){
                         doTaskLikeReel(driver);
                     }else doTaskLikePost(driver);
                     break;
@@ -237,20 +237,20 @@ public class FacebookTask {
 
         if(((Facebook)accountSocials.get(0)).getType().equals("PAGE")){
             if( driver.manage().getCookieNamed("i_user") == null
-                    || driver.manage().getCookieNamed("i_user").getValue().isEmpty()
-                    || !driver.manage().getCookieNamed("i_user").getValue().equals(((Facebook)accountSocials.get(0)).getFacebookID()) ){
+                    || Objects.requireNonNull(driver.manage().getCookieNamed("i_user")).getValue().isEmpty()
+                    || !Objects.requireNonNull(driver.manage().getCookieNamed("i_user")).getValue().equals(((Facebook)accountSocials.get(0)).getFacebookID()) ){
                 FacebookCookieHandler.addCookieFacebookToWeb(driver, accountSocials.get(0).getCookie());
-                driver.get(driver.getCurrentUrl());
+                driver.get(Objects.requireNonNull(driver.getCurrentUrl()));
                 checkCookieExpiredAndCreateNew(driver);
             }
         }else if (
                 driver.manage().getCookieNamed("xs") == null
                         || driver.manage().getCookieNamed("c_user") == null
-                        || driver.manage().getCookieNamed("xs").getValue().isEmpty()
-                        || driver.manage().getCookieNamed("c_user").getValue().isEmpty()
+                        || Objects.requireNonNull(driver.manage().getCookieNamed("xs")).getValue().isEmpty()
+                        || Objects.requireNonNull(driver.manage().getCookieNamed("c_user")).getValue().isEmpty()
         ) {
             FacebookCookieHandler.addCookieFacebookToWeb(driver, accountSocials.get(0).getCookie());
-            driver.get(driver.getCurrentUrl());
+            driver.get(Objects.requireNonNull(driver.getCurrentUrl()));
             checkCookieExpiredAndCreateNew(driver);
 
         }
@@ -258,7 +258,7 @@ public class FacebookTask {
     }
 
     private void checkCookieExpiredAndCreateNew(WebDriver driver ) throws InterruptedException {
-        if(driver.manage().getCookieNamed("xs") != null &&  !driver.manage().getCookieNamed("xs").getValue().isEmpty()) return;
+        if(driver.manage().getCookieNamed("xs") != null &&  !Objects.requireNonNull(driver.manage().getCookieNamed("xs")).getValue().isEmpty()) return;
 
         WebElement login = SeleniumHandler.getElementFromXpaths(new String[]{
                 "//div[@aria-label='Accessible login button' and @role='button']"
