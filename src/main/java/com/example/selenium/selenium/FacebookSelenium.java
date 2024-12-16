@@ -110,7 +110,7 @@ public class FacebookSelenium {
 
         WebElement seeAll = SeleniumHandler.getElementFromXpaths(new String[]{
                 "//div[@aria-label='Xem tất cả trang cá nhân' and @role='button']",
-                "//div[@aria-label='See all profiles' and @role='button'"
+                "//div[@aria-label='See all profiles' and @role='button']"
         }, driver);
         seeAll.click();
 

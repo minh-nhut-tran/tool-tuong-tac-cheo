@@ -1,5 +1,6 @@
 package com.example.selenium.config;
 
+import com.example.selenium.constants.CurrentDirectory;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.HashMap;
@@ -10,7 +11,7 @@ public class ChromeOptionsConfig {
 
     public ChromeOptions setupOptionsChrome(String typeAccount,String profileName){
         System.setProperty("file.encoding", "UTF-8");
-        System.setProperty("webdriver.chrome.driver", "D:\\ChromeDriver\\chromedriver-win64\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", CurrentDirectory.currentDirectoryChromeDriver +"chromedriver-win64\\chromedriver.exe");
         ChromeOptions options = new ChromeOptions();
         String newProfilePath = "D:\\Youtube\\ChromeProfile\\"+typeAccount;
         options.addArguments("--user-data-dir=" + newProfilePath);
