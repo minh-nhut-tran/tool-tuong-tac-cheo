@@ -127,9 +127,25 @@ public class AccountController  implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../login-"+this.state+"-view.fxml"));
             Parent root = loader.load();
 
-            LoginFaceController loginFaceController = loader.getController();
-            if(loginFaceController != null) loginFaceController.setData(facebook,youtube,tiktok,containerAccount
-            ,containerContentAccount,state,stage);
+            switch (this.state){
+                case "face":
+                    LoginFaceController loginFaceController = loader.getController();
+                    if(loginFaceController != null) loginFaceController.setData(facebook,youtube,tiktok,containerAccount
+                            ,containerContentAccount,state,stage);
+                    break;
+                case "youtube":
+
+                    break;
+                case "tiktok":
+                    LoginTiktokController loginTiktokController = loader.getController();
+                    if (loginTiktokController != null) {
+                        loginTiktokController.setData(facebook,youtube,tiktok,containerAccount
+                                ,containerContentAccount,state,stage);
+                    }
+                    break;
+            }
+
+
 
             Scene scene = new Scene(root);
             stage.setScene(scene);

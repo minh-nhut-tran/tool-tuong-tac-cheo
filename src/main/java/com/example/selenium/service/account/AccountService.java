@@ -2,8 +2,11 @@ package com.example.selenium.service.account;
 
 import com.example.selenium.pojo.AccountSocial;
 import com.example.selenium.pojo.Facebook;
+import com.example.selenium.pojo.Tiktok;
 import com.example.selenium.service.account_facebook.AccountFacebookService;
 import com.example.selenium.service.account_facebook.IAccountFacebookService;
+import com.example.selenium.service.account_tiktok.AccountTiktokService;
+import com.example.selenium.service.account_tiktok.IAccountTiktokService;
 import com.example.selenium.service.login.ILoginService;
 import com.example.selenium.service.login.LoginService;
 import com.example.selenium.service.navigation.INavigationService;
@@ -16,15 +19,16 @@ import java.io.IOException;
 
 public class AccountService implements IAccountService{
 
-    private ILoginService loginService;
-    private INavigationService navigationService;
-
+    private final ILoginService loginService;
+    private final INavigationService navigationService;
     private final IAccountFacebookService accountFacebookService;
+    private final IAccountTiktokService accountTiktokService;
 
     public AccountService(){
         accountFacebookService = new AccountFacebookService();
         loginService = new LoginService();
         navigationService = new NavigationService();
+        accountTiktokService = new AccountTiktokService();
     }
 
 
@@ -32,6 +36,8 @@ public class AccountService implements IAccountService{
     public boolean save(AccountSocial account) throws InterruptedException {
         if(account instanceof Facebook){
             return accountFacebookService.loginAccountFacebook(account);
+        }else if(account instanceof Tiktok){
+            return accountTiktokService.loginAccountTiktok(account);
         }
         return false;
     }
