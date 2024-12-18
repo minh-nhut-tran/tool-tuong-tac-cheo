@@ -34,8 +34,8 @@ public class FacebookTask {
         WebDriver driver = new ChromeDriver(options.setupOptionsChrome("Facebook", accountSocials.get(0).getProfile()));
         EstablishAccount.EstablishAccountFacebook(accountSocials.get(0), account);
         loginWebTTC(driver, account);
-        doTasks(driver,tasks.get("likePageFacebook"),URL.URL_DO_TASK_EMOTION_POST,"emotion_post");
-        doTasks(driver,tasks.get("emotionFacebook"),URL.URL_DO_TASK_LIKE_PAGE_CHEO,"like_page");
+        doTasks(driver,tasks.get("likePageFacebook"),URL.URL_DO_TASK_LIKE_PAGE_CHEO,"emotion_post");
+        doTasks(driver,tasks.get("emotionFacebook"),URL.URL_DO_TASK_EMOTION_POST,"like_page");
         doTasks(driver,tasks.get("followFacebook"),URL.URL_DO_TASK_SUB_CHEO,"sub_cheo");
         doTasks(driver,tasks.get("likePostFacebook"),URL.URL_DO_TASK_LIKE_CHEO_VIP,"like_post");
         driver.close();

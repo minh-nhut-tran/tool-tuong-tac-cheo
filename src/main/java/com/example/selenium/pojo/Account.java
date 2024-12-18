@@ -10,4 +10,5 @@ public class Account {
     private int balance;
     private String user;
     private boolean isActive;
+    private String currentState;
 }

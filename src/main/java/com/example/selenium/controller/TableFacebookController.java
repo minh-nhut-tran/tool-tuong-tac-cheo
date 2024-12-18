@@ -45,11 +45,11 @@ public class TableFacebookController implements Initializable {
         this.no.setText(String.valueOf(no+1));
         this.facebookID.setText(facebookID);
         this.name.setText(name);
-        if(status){
-            this.status.setText( "ACTIVE");
+        if (status) {
+            this.status.setText("ACTIVE");
             this.status.setTextFill(Paint.valueOf("#18FA0C"));
-        }else{
-            this.status.setText( "INACTIVE");
+        } else {
+            this.status.setText("INACTIVE");
             this.status.setTextFill(Paint.valueOf("#FF0033"));
         }
         this.type.setText(type);

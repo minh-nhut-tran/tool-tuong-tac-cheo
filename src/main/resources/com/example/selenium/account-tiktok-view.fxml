@@ -11,7 +11,7 @@
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
    </padding>
    <children>
-      <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" prefHeight="63.0" styleClass="header-table-line" stylesheets="@home-view-css.css">
+      <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" prefHeight="63.0" spacing="20.0" styleClass="header-table-line" stylesheets="@home-view-css.css">
          <children>
             <Label fx:id="no" contentDisplay="CENTER" prefWidth="100.0" text="No." textFill="WHITE">
                <font>
@@ -23,7 +23,7 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label fx:id="name" prefWidth="300.0" text="Name" textFill="WHITE">
+            <Label fx:id="name" prefWidth="250.0" text="Name" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>

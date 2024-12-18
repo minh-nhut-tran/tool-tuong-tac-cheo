@@ -79,7 +79,7 @@ public class LoginFaceController implements Initializable {
     }
 
     @FXML
-    public void login() throws InterruptedException {
+    public void login() {
        try {
            if(checkAccountExistOnSystem()) return;
            AccountSocial account = new Facebook();

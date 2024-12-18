@@ -53,6 +53,20 @@ public class AccountController  implements Initializable {
         if(this.accountData != null){
             this.balance.setText(String.valueOf(accountData.getBalance()));
             this.userName.setText(accountData.getUser());
+            try {
+                facebook.getStyleClass().replaceAll(s -> "account-button-non-active");
+                youtube.getStyleClass().replaceAll(s -> "account-button-non-active");
+                tiktok.getStyleClass().replaceAll(s -> "account-button-non-active");
+
+                loadTypeAccount(
+                        this.accountData.getCurrentState() != null &&
+                                !this.accountData.getCurrentState() .isEmpty()
+                                ? this.accountData.getCurrentState()
+                                : "facebook"
+                );
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
     @FXML
@@ -66,16 +80,6 @@ public class AccountController  implements Initializable {
         accountFacebookService = new AccountFacebookService();
         accountTiktokService = new AccountTiktokService();
         accountYoutubeService = new AccountYoutubeService();
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../account-facebook-view.fxml"));
-            VBox header = loader.load();
-            containerAccount.getChildren().add(0,header);
-            containerContentAccount.getChildren().addAll(accountFacebookService.loadAccountFacebook());
-            this.state = "face";
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
     }
 
     @FXML
@@ -87,34 +91,38 @@ public class AccountController  implements Initializable {
             tiktok.getStyleClass().replaceAll(s -> "account-button-non-active");
             containerAccount.getChildren().remove(0);
             containerContentAccount.getChildren().clear();
-            switch (type) {
-                case "facebook":
-                    facebook.getStyleClass().add("account-button-facebook-active");
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../account-facebook-view.fxml"));
-                    VBox header = loader.load();
-                    containerAccount.getChildren().add(0,header);
-                    containerContentAccount.getChildren().addAll(accountFacebookService.loadAccountFacebook());
-                    this.state = "face";
-                    break;
-                case "youtube":
-                    youtube.getStyleClass().add("account-button-youtube-active");
-                    FXMLLoader loaderYoutube = new FXMLLoader(getClass().getResource("../account-youtube-view.fxml"));
-                    VBox headerYoutube = loaderYoutube.load();
-                    containerAccount.getChildren().add(0, headerYoutube);
-                    containerContentAccount.getChildren().addAll(accountYoutubeService.loadAccountYoutube());
-                    this.state = "youtube";
-                    break;
-                case "tiktok":
-                    tiktok.getStyleClass().add("account-button-tiktok-active");
-                    FXMLLoader loaderTiktok = new FXMLLoader(getClass().getResource("../account-tiktok-view.fxml"));
-                    VBox headerTiktok = loaderTiktok.load();
-                    containerAccount.getChildren().add(0, headerTiktok);
-                    containerContentAccount.getChildren().addAll(accountTiktokService.loadAccountTiktok());
-                    this.state = "tiktok";
-                    break;
-            }
+            loadTypeAccount(type);
         }catch (Exception e){
             System.out.println(e.getMessage());
+        }
+    }
+
+    public void loadTypeAccount(String type) throws IOException {
+        switch (type) {
+            case "facebook":
+                facebook.getStyleClass().add("account-button-facebook-active");
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../account-facebook-view.fxml"));
+                VBox header = loader.load();
+                containerAccount.getChildren().add(0,header);
+                containerContentAccount.getChildren().addAll(accountFacebookService.loadAccountFacebook());
+                this.state = "face";
+                break;
+            case "youtube":
+                youtube.getStyleClass().add("account-button-youtube-active");
+                FXMLLoader loaderYoutube = new FXMLLoader(getClass().getResource("../account-youtube-view.fxml"));
+                VBox headerYoutube = loaderYoutube.load();
+                containerAccount.getChildren().add(0, headerYoutube);
+                containerContentAccount.getChildren().addAll(accountYoutubeService.loadAccountYoutube());
+                this.state = "youtube";
+                break;
+            case "tiktok":
+                tiktok.getStyleClass().add("account-button-tiktok-active");
+                FXMLLoader loaderTiktok = new FXMLLoader(getClass().getResource("../account-tiktok-view.fxml"));
+                VBox headerTiktok = loaderTiktok.load();
+                containerAccount.getChildren().add(0, headerTiktok);
+                containerContentAccount.getChildren().addAll(accountTiktokService.loadAccountTiktok());
+                this.state = "tiktok";
+                break;
         }
     }
 
@@ -127,10 +135,23 @@ public class AccountController  implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../login-"+this.state+"-view.fxml"));
             Parent root = loader.load();
 
-            LoginFaceController loginFaceController = loader.getController();
-            if(loginFaceController != null) loginFaceController.setData(facebook,youtube,tiktok,containerAccount
-            ,containerContentAccount,state,stage);
+            switch (this.state){
+                case "face":
+                    LoginFaceController loginFaceController = loader.getController();
+                    if(loginFaceController != null) loginFaceController.setData(facebook,youtube,tiktok,containerAccount
+                            ,containerContentAccount,state,stage);
+                    break;
+                case "youtube":
 
+                    break;
+                case "tiktok":
+                    LoginTiktokController loginTiktokController = loader.getController();
+                    if (loginTiktokController != null) {
+                        loginTiktokController.setData(facebook,youtube,tiktok,containerAccount
+                                ,containerContentAccount,state,stage);
+                    }
+                    break;
+            }
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
