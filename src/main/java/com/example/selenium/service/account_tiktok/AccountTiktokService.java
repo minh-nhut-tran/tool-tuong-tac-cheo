@@ -1,6 +1,11 @@
 package com.example.selenium.service.account_tiktok;
 
+import com.example.selenium.common.Directory;
+import com.example.selenium.common.EncryptRSA;
+import com.example.selenium.common.FileHandler;
+import com.example.selenium.common.Mapper;
 import com.example.selenium.config.ChromeOptionsConfig;
+import com.example.selenium.constants.CurrentDirectory;
 import com.example.selenium.controller.TableTiktokController;
 import com.example.selenium.model.Tiktok;
 import com.example.selenium.pojo.AccountSocial;
@@ -12,15 +17,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 public class AccountTiktokService implements IAccountTiktokService{
 
-    private TiktokSelenium tiktokSelenium;
+    private final TiktokSelenium tiktokSelenium;
 
     public AccountTiktokService() {
         tiktokSelenium = new TiktokSelenium();
@@ -30,14 +33,16 @@ public class AccountTiktokService implements IAccountTiktokService{
     public List<HBox>  loadAccountTiktok() {
 
         List<Tiktok> accounts = new ArrayList<>();
-        accounts.add(new Tiktok("tran_minh_nhut","Tran Minh Nhut",true));
-        accounts.add(new Tiktok("nguyen_nha","Nguyen Thi Thanh Nha",true));
+        getAllAccountTiktok().forEach( accountSocial -> {
+            accounts.add( new Tiktok(
+                    ((com.example.selenium.pojo.Tiktok)accountSocial).getTiktokID(),
+                    ((com.example.selenium.pojo.Tiktok)accountSocial).getName(),
+                    accountSocial.getStatus().equals("ACTIVE")
+            ));
+        });
 
         List<HBox> listAccounts = new ArrayList<>();
         try {
-           // FXMLLoader loader = new FXMLLoader(getClass().getResource("../../account-tiktok-view.fxml"));
-            //VBox listItems = loader.load();
-
             ListIterator<Tiktok> iterator = accounts.listIterator();
             while(iterator.hasNext()){
                 Tiktok tiktok = iterator.next();
@@ -66,6 +71,61 @@ public class AccountTiktokService implements IAccountTiktokService{
         WebDriver driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         boolean isLogin = tiktokSelenium.loginTiktokAccountOnGoogle(driver,account);
-        return false;
+        if(!isLogin){
+            String path = "D:\\Youtube\\ChromeProfile\\Tiktok\\" + profileName;
+            if(!Directory.deleteDirectory(path)) System.out.println("Delete profile unsuccessful!");
+            return false;
+        }
+        account.setProfile(profileName.trim());
+        account.setStatus("ACTIVE");
+        String encryptInformation = Mapper.mapAccountTiktokToString(account);
+        EncryptRSA.encryption(encryptInformation,
+                new File(CurrentDirectory.currentDirectoryTiktok + ((com.example.selenium.pojo.Tiktok)account).getTiktokID() + ".dat")
+        );
+        return true;
     }
+
+    @Override
+    public void deleteAccountTiktok(String tiktokID)  {
+        String pathProfile = "D:\\Youtube\\ChromeProfile\\Facebook\\" + getAccountTiktok(tiktokID).getProfile();
+        if(!Directory.deleteDirectory(pathProfile)) System.out.println("Delete profile account unsuccessful!");
+        String pathInformation = CurrentDirectory.currentDirectoryTiktok + tiktokID+".dat";
+        if(!FileHandler.deleteFile(pathInformation)) System.out.println("Delete account unsuccessful!");
+    }
+
+    @Override
+    public void setStatus(String tiktokID, String status)  {
+        AccountSocial accountTiktok =  Mapper.mapStringToAccountTiktok(
+                EncryptRSA.decryption(FileHandler.readFile(
+                        new File( CurrentDirectory.currentDirectoryTiktok + tiktokID+".dat"))));
+        accountTiktok.setStatus(status);
+        String encryptInformation = Mapper.mapAccountTiktokToString(accountTiktok);
+        EncryptRSA.encryption(encryptInformation,
+                new File(CurrentDirectory.currentDirectoryTiktok + tiktokID+".dat")
+        );
+    }
+
+    @Override
+    public List<AccountSocial> getAllAccountTiktok(){
+        List<AccountSocial> accounts = new ArrayList<>();
+        Objects.requireNonNull(FileHandler.getAllFileOnDirectory(CurrentDirectory.currentDirectoryTiktok)).forEach(
+                file -> {
+                    if(file.exists() && file.getName().endsWith(".dat")){
+                        AccountSocial account = Mapper.mapStringToAccountTiktok(
+                                EncryptRSA.decryption(FileHandler.readFile(file))
+                        );
+                        accounts.add(account);
+                    }
+                });
+        return accounts;
+    }
+
+    public AccountSocial getAccountTiktok(String tiktokID){
+        return Mapper.mapStringToAccountTiktok(
+                EncryptRSA.decryption(
+                        FileHandler.readFile(
+                                new File(CurrentDirectory.currentDirectoryTiktok+tiktokID+".dat"))));
+    }
+
+
 }

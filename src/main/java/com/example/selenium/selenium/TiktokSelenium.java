@@ -1,7 +1,9 @@
 package com.example.selenium.selenium;
 
+import com.example.selenium.common.DirectWindows;
 import com.example.selenium.common.SeleniumHandler;
 import com.example.selenium.pojo.AccountSocial;
+import com.example.selenium.pojo.Tiktok;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -54,14 +56,34 @@ public class TiktokSelenium {
                     -> driver_web.manage().getCookieNamed("sessionid") != null &&
                        !Objects.requireNonNull(driver_web.manage().getCookieNamed("sessionid")).getValue().isEmpty()
             );
-            driver.close();
+            assignAccount(driver,accountSocial);
+            DirectWindows.closeAllTab(driver);
             return true;
         }catch (Exception e){
             e.printStackTrace();
+            return false;
         }
-        return false;
+
     }
 
+
+    public void assignAccount(WebDriver driver, AccountSocial accountSocial) throws InterruptedException {
+        Thread.sleep(5000);
+        DirectWindows.openNewTab(driver);
+        driver.get("https://www.tiktok.com/profile");
+        Thread.sleep(5000);
+        String tiktokID = SeleniumHandler.getElementFromXpaths(new String[]{
+                "//h1[@data-e2e='user-title']"
+        },driver).getText().trim();
+        String name = SeleniumHandler.getElementFromXpaths(new String[]{
+                "//h2[@data-e2e='user-subtitle']"
+        },driver).getText().trim();
+        String sessionid = Objects.requireNonNull(driver.manage().getCookieNamed("sessionid")).getValue();
+        accountSocial.setCookie(sessionid);
+        ((Tiktok)accountSocial).setTiktokID(tiktokID);
+        ((Tiktok)accountSocial).setName(name);
+        accountSocial.setCookie(sessionid);
+    }
 
 
 }

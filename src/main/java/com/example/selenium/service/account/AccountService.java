@@ -1,5 +1,6 @@
 package com.example.selenium.service.account;
 
+import com.example.selenium.pojo.Account;
 import com.example.selenium.pojo.AccountSocial;
 import com.example.selenium.pojo.Facebook;
 import com.example.selenium.pojo.Tiktok;
@@ -44,10 +45,15 @@ public class AccountService implements IAccountService{
 
     @Override
     public void delete(String socialType, String socialID, Stage stage) throws IOException {
+        Account account = loginService.loginByAccessToken(loginService.getAccessTokenAvailable());
        if(socialType.equals("facebook")){
             accountFacebookService.deleteAccountFacebook(socialID);
-            navigationService.router("account", loginService.loginByAccessToken(loginService.getAccessTokenAvailable()),stage);
+            account.setCurrentState("facebook");
+       }else if(socialType.equals("tiktok")){
+           accountTiktokService.deleteAccountTiktok(socialID);
+           account.setCurrentState("tiktok");
        }
+        navigationService.router("account",account,stage);
     }
 
 
@@ -59,10 +65,15 @@ public class AccountService implements IAccountService{
 
     @Override
     public void setStatusAccount(String socialType, String socialID,String status, Stage stage) throws IOException {
+        Account account = loginService.loginByAccessToken(loginService.getAccessTokenAvailable());
         if(socialType.equals("facebook")){
             accountFacebookService.setStatus(socialID,status);
-            navigationService.router("account", loginService.loginByAccessToken(loginService.getAccessTokenAvailable()),stage);
+            account.setCurrentState("facebook");
+        }else if(socialType.equals("tiktok")){
+            accountTiktokService.setStatus(socialID,status);
+            account.setCurrentState("tiktok");
         }
+        navigationService.router("account", account,stage);
     }
 
 

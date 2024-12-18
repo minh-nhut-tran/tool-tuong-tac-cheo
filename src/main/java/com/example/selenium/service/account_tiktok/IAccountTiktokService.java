@@ -8,5 +8,12 @@ import java.util.List;
 public interface IAccountTiktokService {
 
     public List<HBox> loadAccountTiktok();
+
     public boolean loginAccountTiktok(AccountSocial account) throws InterruptedException;
+
+    public void deleteAccountTiktok(String tiktokID) ;
+
+    public void setStatus(String tiktokID, String status) ;
+
+    public List<AccountSocial> getAllAccountTiktok();
 }
