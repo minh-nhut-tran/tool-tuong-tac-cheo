@@ -65,12 +65,12 @@ public class AccountTiktokService implements IAccountTiktokService{
     }
 
     @Override
-    public boolean loginAccountTiktok(AccountSocial account) throws InterruptedException {
+    public boolean loginAccountTiktok(AccountSocial account, String typeLogin) throws InterruptedException {
         String profileName = "Profile " + new Date().getTime();
         ChromeOptions options = new ChromeOptionsConfig().setupOptionsChrome("Tiktok",profileName);
         WebDriver driver = new ChromeDriver(options);
         driver.manage().window().maximize();
-        boolean isLogin = tiktokSelenium.loginTiktokAccountOnGoogle(driver,account);
+        boolean isLogin = tiktokSelenium.loginTiktokAccountOnGoogle(driver,account, typeLogin);
         if(!isLogin){
             String path = "D:\\Youtube\\ChromeProfile\\Tiktok\\" + profileName;
             if(!Directory.deleteDirectory(path)) System.out.println("Delete profile unsuccessful!");

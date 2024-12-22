@@ -34,11 +34,11 @@ public class AccountService implements IAccountService{
 
 
     @Override
-    public boolean save(AccountSocial account) throws InterruptedException {
+    public boolean save(AccountSocial account, String typeLogin) throws InterruptedException {
         if(account instanceof Facebook){
             return accountFacebookService.loginAccountFacebook(account);
         }else if(account instanceof Tiktok){
-            return accountTiktokService.loginAccountTiktok(account);
+            return accountTiktokService.loginAccountTiktok(account,typeLogin);
         }
         return false;
     }

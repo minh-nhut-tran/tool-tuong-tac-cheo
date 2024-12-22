@@ -409,7 +409,7 @@
                               </Label>
                               <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #23A31C; -fx-background-radius: 10;" text="Run" textFill="WHITE">
+                                    <Button mnemonicParsing="false" onAction="#run" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #23A31C; -fx-background-radius: 10;" text="Run" textFill="WHITE" userData="tiktok">
                                        <font>
                                           <Font name="System Bold" size="17.0" />
                                        </font>
@@ -443,8 +443,8 @@
                                           </Label>
                                           <MenuButton fx:id="modeTiktok" alignment="CENTER" mnemonicParsing="false" prefWidth="150.0" style="-fx-background-color: #2E3239;" styleClass="border-color-element" stylesheets="@home-view-css.css" text="Auto" textFill="WHITE">
                                              <items>
-                                                <MenuItem mnemonicParsing="false" text="Auto" />
-                                                <MenuItem mnemonicParsing="false" text="Customize" />
+                                                <MenuItem onAction="#setMode" fx:id="modeTiktokAuto" userData="tiktokAuto" mnemonicParsing="false" text="Auto" />
+                                                <MenuItem onAction="#setMode" fx:id="modeTiktokCustomize" userData="tiktokCustomize" mnemonicParsing="false" text="Customize" />
                                              </items>
                                              <font>
                                                 <Font size="15.0" />
@@ -462,7 +462,7 @@
                                                 <Font name="System Bold" size="15.0" />
                                              </font>
                                           </Label>
-                                          <TextField alignment="CENTER" prefHeight="25.0" prefWidth="80.0" promptText="10" style="-fx-background-color: transparent;" styleClass="border-color-element" stylesheets="@home-view-css.css" text="10" HBox.hgrow="NEVER">
+                                          <TextField fx:id="followTiktok" alignment="CENTER" prefHeight="25.0" prefWidth="80.0" promptText="10" style="-fx-background-color: transparent;" styleClass="border-color-element" stylesheets="@home-view-css.css" text="10" HBox.hgrow="NEVER">
                                              <font>
                                                 <Font size="15.0" />
                                              </font>
@@ -476,27 +476,14 @@
                                                 <Font name="System Bold" size="15.0" />
                                              </font>
                                           </Label>
-                                          <TextField alignment="CENTER" prefWidth="80.0" style="-fx-background-color: transparent;" styleClass="border-color-element" stylesheets="@home-view-css.css" text="10">
+                                          <TextField fx:id="loveTiktok" alignment="CENTER" prefWidth="80.0" style="-fx-background-color: transparent;" styleClass="border-color-element" stylesheets="@home-view-css.css" text="10">
                                              <font>
                                                 <Font size="15.0" />
                                              </font>
                                           </TextField>
                                        </children>
                                     </HBox>
-                                    <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                       <children>
-                                          <Label text="Tasks view/account" textFill="WHITE">
-                                             <font>
-                                                <Font name="System Bold" size="15.0" />
-                                             </font>
-                                          </Label>
-                                          <TextField alignment="CENTER" prefWidth="80.0" style="-fx-background-color: transparent;" styleClass="border-color-element" stylesheets="@home-view-css.css" text="10">
-                                             <font>
-                                                <Font size="15.0" />
-                                             </font>
-                                          </TextField>
-                                       </children>
-                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                  </children>
                               </GridPane>
                            </children>

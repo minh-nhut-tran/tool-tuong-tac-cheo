@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public interface IAccountService {
-    public boolean save(AccountSocial account) throws InterruptedException;
+    public boolean save(AccountSocial account, String typeLogin) throws InterruptedException;
 
     public void delete(String socialType, String socialID, Stage stage) throws IOException;
 
