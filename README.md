@@ -1,5 +1,4 @@
 # tool-tuong-tac-cheo done feature facebook
-# doing feature tiktok
 
 # How to run
 
