@@ -62,7 +62,7 @@
                   <Insets top="7.0" />
                </VBox.margin>
             </Label>
-            <Button onMouseClicked="#login" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="50.0" style="-fx-background-color: rgb(255, 59, 92);" text="Login" textFill="WHITE">
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#login" userData="auto" prefHeight="50.0" style="-fx-background-color: rgb(255, 59, 92);" text="Login" textFill="WHITE">
                <VBox.margin>
                   <Insets top="30.0" />
                </VBox.margin>
@@ -73,9 +73,20 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
+            <Button  maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#login" userData="non-auto" prefHeight="50.0" style="-fx-background-color: #2f2f2f;" text="Login more options" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </Button>
             <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Please follow login to resolve captcha" textFill="#ffffff99">
                <VBox.margin>
-                  <Insets top="60.0" />
+                  <Insets top="25.0" />
                </VBox.margin>
                <font>
                   <Font name="System Italic" size="15.0" />

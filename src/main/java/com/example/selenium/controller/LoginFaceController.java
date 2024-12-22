@@ -89,7 +89,7 @@ public class LoginFaceController implements Initializable {
                ((Facebook)account).setType("PAGE");
                ((Facebook)account).setName(pageName.getText());
            }else ((Facebook)account).setType("PROFILE");
-           if(accountService.save(account)) {
+           if(accountService.save(account,"")) {
                changeTypeAccount();
                 this.stage.close();
            }

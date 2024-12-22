@@ -14,6 +14,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLOutput;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -39,6 +40,12 @@ public class AutomationController  implements Initializable {
     private TextField likePostFacebook;
 
     @FXML
+    private TextField followTiktok;
+
+    @FXML
+    private TextField loveTiktok;
+
+    @FXML
     private MenuButton modeFacebook;
 
     @FXML
@@ -46,6 +53,12 @@ public class AutomationController  implements Initializable {
 
     @FXML
     private MenuItem modeFacebookCustomize;
+
+    @FXML
+    private MenuItem modeTiktokAuto;
+
+    @FXML
+    private MenuItem modeTiktokCustomize;
 
     @FXML
     private MenuButton modeTiktok;
@@ -76,26 +89,35 @@ public class AutomationController  implements Initializable {
        switch (type){
            case "facebookAuto":
                this.modeFacebook.setText(this.modeFacebookAuto.getText());
-               disableCustomizeTask(true);
+               disableCustomizeFacebookTask(true);
                break;
            case "facebookCustomize":
                this.modeFacebook.setText(this.modeFacebookCustomize.getText());
-               disableCustomizeTask(false);
+               disableCustomizeFacebookTask(false);
                break;
-           case "tiktok":
+           case "tiktokAuto":
+               this.modeTiktok.setText(this.modeTiktokAuto.getText());
+               disableCustomizeTiktokTask(true);
+               break;
+           case "tiktokCustomize":
+               this.modeTiktok.setText(this.modeTiktokCustomize.getText());
+               disableCustomizeTiktokTask(false);
                break;
            default:
-
        }
 
     }
-    private void disableCustomizeTask(boolean disable){
+    private void disableCustomizeFacebookTask(boolean disable){
        this.emotionFacebook.setDisable(disable);
        this.followFacebook.setDisable(disable);
        this.likePageFacebook.setDisable(disable);
        this.likePostFacebook.setDisable(disable);
     }
 
+    private void disableCustomizeTiktokTask(boolean disable){
+        this.followTiktok.setDisable(disable);
+        this.loveTiktok.setDisable(disable);
+    }
 
     @FXML
     public void switchScreen(MouseEvent event) throws IOException {
@@ -108,7 +130,7 @@ public class AutomationController  implements Initializable {
         navigationService = new NavigationService();
         automationService = new AutomationService();
         this.modeFacebook.setText(this.modeFacebookAuto.getText());
-        disableCustomizeTask(true);
+        disableCustomizeFacebookTask(true);
     }
 
 
@@ -127,6 +149,10 @@ public class AutomationController  implements Initializable {
             case "youtube":
                 break;
             case "tiktok":
+                Map<String,Integer> tasksTiktok = new HashMap<>();
+                tasksTiktok.put("loveTiktok",Integer.valueOf(this.loveTiktok.getText()));
+                tasksTiktok.put("followTiktok",Integer.valueOf(this.followTiktok.getText()));
+                automationService.run("tiktok",this.accountData,tasksTiktok);
                 break;
         }
 

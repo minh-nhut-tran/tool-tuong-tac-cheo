@@ -9,7 +9,7 @@ public interface IAccountTiktokService {
 
     public List<HBox> loadAccountTiktok();
 
-    public boolean loginAccountTiktok(AccountSocial account) throws InterruptedException;
+    public boolean loginAccountTiktok(AccountSocial account, String typeLogin) throws InterruptedException;
 
     public void deleteAccountTiktok(String tiktokID) ;
 
