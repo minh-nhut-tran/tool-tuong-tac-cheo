@@ -1,6 +1,10 @@
 package com.example.selenium.controller;
 
 import com.example.selenium.pojo.Account;
+import com.example.selenium.pojo.AccountSocial;
+import com.example.selenium.pojo.Youtube;
+import com.example.selenium.service.account.AccountService;
+import com.example.selenium.service.account.IAccountService;
 import com.example.selenium.service.account_facebook.AccountFacebookService;
 import com.example.selenium.service.account_facebook.IAccountFacebookService;
 import com.example.selenium.service.account_tiktok.AccountTiktokService;
@@ -42,6 +46,7 @@ public class AccountController  implements Initializable {
     @FXML
     private HBox tiktok;
 
+    private IAccountService accountService;
     private String state;
     private INavigationService navigationService;
     private IAccountFacebookService accountFacebookService;
@@ -80,6 +85,7 @@ public class AccountController  implements Initializable {
         accountFacebookService = new AccountFacebookService();
         accountTiktokService = new AccountTiktokService();
         accountYoutubeService = new AccountYoutubeService();
+        accountService = new AccountService();
     }
 
     @FXML
@@ -131,18 +137,19 @@ public class AccountController  implements Initializable {
         try {
             if(this.state == null) throw new Exception("state is not valid!");
 
+            if(this.state.equals("youtube")){
+                AccountSocial accountSocial = new Youtube();
+                accountService.save(accountSocial, "");
+                return;
+            }
             Stage stage = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../login-"+this.state+"-view.fxml"));
             Parent root = loader.load();
-
             switch (this.state){
                 case "face":
                     LoginFaceController loginFaceController = loader.getController();
                     if(loginFaceController != null) loginFaceController.setData(facebook,youtube,tiktok,containerAccount
                             ,containerContentAccount,state,stage);
-                    break;
-                case "youtube":
-
                     break;
                 case "tiktok":
                     LoginTiktokController loginTiktokController = loader.getController();

@@ -1,13 +1,12 @@
 package com.example.selenium.service.account;
 
-import com.example.selenium.pojo.Account;
-import com.example.selenium.pojo.AccountSocial;
-import com.example.selenium.pojo.Facebook;
-import com.example.selenium.pojo.Tiktok;
+import com.example.selenium.pojo.*;
 import com.example.selenium.service.account_facebook.AccountFacebookService;
 import com.example.selenium.service.account_facebook.IAccountFacebookService;
 import com.example.selenium.service.account_tiktok.AccountTiktokService;
 import com.example.selenium.service.account_tiktok.IAccountTiktokService;
+import com.example.selenium.service.account_youtube.AccountYoutubeService;
+import com.example.selenium.service.account_youtube.IAccountYoutubeService;
 import com.example.selenium.service.login.ILoginService;
 import com.example.selenium.service.login.LoginService;
 import com.example.selenium.service.navigation.INavigationService;
@@ -24,12 +23,14 @@ public class AccountService implements IAccountService{
     private final INavigationService navigationService;
     private final IAccountFacebookService accountFacebookService;
     private final IAccountTiktokService accountTiktokService;
+    private final IAccountYoutubeService accountYoutubeService;
 
     public AccountService(){
         accountFacebookService = new AccountFacebookService();
         loginService = new LoginService();
         navigationService = new NavigationService();
         accountTiktokService = new AccountTiktokService();
+        accountYoutubeService = new AccountYoutubeService();
     }
 
 
@@ -39,6 +40,8 @@ public class AccountService implements IAccountService{
             return accountFacebookService.loginAccountFacebook(account);
         }else if(account instanceof Tiktok){
             return accountTiktokService.loginAccountTiktok(account,typeLogin);
+        }else if(account instanceof Youtube){
+            return accountYoutubeService.loginAccountYoutube(account);
         }
         return false;
     }
