@@ -8,4 +8,7 @@ import java.util.List;
 public interface IAccountYoutubeService {
     public List<HBox> loadAccountYoutube();
     public boolean loginAccountYoutube(AccountSocial account) throws InterruptedException;
+    public List<AccountSocial> getAllAccountYoutube();
+    public void setStatus(String tiktokID, String status);
+    public void deleteAccountTiktok(String tiktokID);
 }

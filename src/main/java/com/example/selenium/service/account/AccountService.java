@@ -49,13 +49,20 @@ public class AccountService implements IAccountService{
     @Override
     public void delete(String socialType, String socialID, Stage stage) throws IOException {
         Account account = loginService.loginByAccessToken(loginService.getAccessTokenAvailable());
-       if(socialType.equals("facebook")){
-            accountFacebookService.deleteAccountFacebook(socialID);
-            account.setCurrentState("facebook");
-       }else if(socialType.equals("tiktok")){
-           accountTiktokService.deleteAccountTiktok(socialID);
-           account.setCurrentState("tiktok");
-       }
+        switch (socialType) {
+            case "facebook":
+                accountFacebookService.deleteAccountFacebook(socialID);
+                account.setCurrentState("facebook");
+                break;
+            case "tiktok":
+                accountTiktokService.deleteAccountTiktok(socialID);
+                account.setCurrentState("tiktok");
+                break;
+            case "youtube":
+                accountYoutubeService.deleteAccountTiktok(socialID);
+                account.setCurrentState("youtube");
+                break;
+        }
         navigationService.router("account",account,stage);
     }
 
@@ -75,6 +82,9 @@ public class AccountService implements IAccountService{
         }else if(socialType.equals("tiktok")){
             accountTiktokService.setStatus(socialID,status);
             account.setCurrentState("tiktok");
+        }else if(socialType.equals("youtube")){
+            accountYoutubeService.setStatus(socialID,status);
+            account.setCurrentState("youtube");
         }
         navigationService.router("account", account,stage);
     }

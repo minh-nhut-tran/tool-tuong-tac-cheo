@@ -89,7 +89,7 @@ public class Mapper {
             account.setCookie(StringHandler.getValueFromKeyInString(accountString,"cookie"));
             account.setStatus(StringHandler.getValueFromKeyInString(accountString,"status"));
             account.setProfile(StringHandler.getValueFromKeyInString(accountString,"profile"));
-            ((Youtube)account).setChanelID(StringHandler.getValueFromKeyInString(accountString,"chanelID"));
+            ((Youtube)account).setChanelID(StringHandler.getValueFromKeyInString(accountString,"channelID"));
             ((Youtube)account).setName(StringHandler.getValueFromKeyInString(accountString,"name"));
             return account;
         }

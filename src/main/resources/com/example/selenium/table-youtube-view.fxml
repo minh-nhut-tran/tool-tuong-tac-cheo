@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
 <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" prefHeight="63.0" style="-fx-background-color: #292C35;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.selenium.controller.TableYoutubeController">
@@ -12,25 +16,39 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="chanelID" prefWidth="250.0" text="8192838912912" textFill="#ffffff66">
+      <Label fx:id="chanelID" prefWidth="300.0" text="8192838912912" textFill="#ffffff66">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="name" prefWidth="300.0" text="Tran Minh Nhut" textFill="#ffffff66">
+      <Label fx:id="name" prefWidth="200.0" text="Tran Minh Nhut" textFill="#ffffff66">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="status" prefWidth="100.0" text="ACTIVE" textFill="#ffffff66">
+      <MenuButton fx:id="status" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#getStage" prefWidth="130.0" style="-fx-background-color: transparent;" stylesheets="@home-view-css.css" text="ACTIVE" textFill="#ffffff66">
+         <items>
+            <MenuItem mnemonicParsing="false" onAction="#setActive" text="ACTIVE" />
+            <MenuItem mnemonicParsing="false" onAction="#setInActive" text="INACTIVE" />
+         </items>
          <font>
             <Font size="16.0" />
          </font>
-      </Label>
-      <Label prefWidth="50.0" textFill="WHITE">
+      </MenuButton>
+      <Label textFill="WHITE">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
+         <graphic>
+            <HBox alignment="CENTER" maxWidth="30.0" onMouseClicked="#deleteAccount" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #34383E; -fx-background-radius: 5;">
+               <children>
+                  <SVGPath content="M18.2549 15.0395L18.5172 13.1545C18.5979 12.5745 18.6717 12.0443 18.7373 11.5579C18.8721 10.5584 18.9395 10.0587 18.6406 9.71684C18.3418 9.375 17.8282 9.375 16.801 9.375H7.19905C6.17182 9.375 5.65821 9.375 5.35938 9.71684C5.06054 10.0587 5.12793 10.5584 5.26272 11.5579C5.32833 12.0445 5.40207 12.5743 5.48281 13.1545L5.74515 15.0395C6.03026 17.0882 6.17282 18.1126 6.47509 18.9353C7.04034 20.4738 8.01744 21.6197 9.18366 22.1118C9.8073 22.375 10.5382 22.375 12 22.375C13.4618 22.375 14.1927 22.375 14.8164 22.1118C15.9826 21.6197 16.9597 20.4738 17.5249 18.9353C17.8272 18.1126 17.9698 17.0882 18.2549 15.0395ZM10.75 11.375C10.75 10.9608 10.4142 10.625 10 10.625C9.58579 10.625 9.25 10.9608 9.25 11.375V19.375C9.25 19.7892 9.58579 20.125 10 20.125C10.4142 20.125 10.75 19.7892 10.75 19.375V11.375ZM14.75 11.375C14.75 10.9608 14.4142 10.625 14 10.625C13.5858 10.625 13.25 10.9608 13.25 11.375V19.375C13.25 19.7892 13.5858 20.125 14 20.125C14.4142 20.125 14.75 19.7892 14.75 19.375V11.375Z&#10;M12 1.625C9.37665 1.625 7.25 3.75165 7.25 6.375V6.625H4C3.58579 6.625 3.25 6.96079 3.25 7.375C3.25 7.78921 3.58579 8.125 4 8.125H20C20.4142 8.125 20.75 7.78921 20.75 7.375C20.75 6.96079 20.4142 6.625 20 6.625H16.75V6.375C16.75 3.75165 14.6234 1.625 12 1.625Z&#10;" fill="#ffffff80" />
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </HBox>
+         </graphic>
       </Label>
    </children>
    <padding>

@@ -2,6 +2,7 @@ package com.example.selenium.service.account_youtube;
 
 import com.example.selenium.common.Directory;
 import com.example.selenium.common.EncryptRSA;
+import com.example.selenium.common.FileHandler;
 import com.example.selenium.common.Mapper;
 import com.example.selenium.config.ChromeOptionsConfig;
 import com.example.selenium.constants.CurrentDirectory;
@@ -18,14 +19,11 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 public class AccountYoutubeService implements IAccountYoutubeService{
 
-    private YoutubeSelenium youtubeSelenium;
+    private final YoutubeSelenium youtubeSelenium;
 
     public AccountYoutubeService() {
         youtubeSelenium = new YoutubeSelenium();
@@ -34,9 +32,13 @@ public class AccountYoutubeService implements IAccountYoutubeService{
     @Override
     public List<HBox> loadAccountYoutube() {
         List<Youtube> accounts = new ArrayList<>();
-        accounts.add(new Youtube("CHANEL_ID0001","Chanel Minh Nhut",true));
-        accounts.add(new Youtube("CHANEL_ID0002","Chanel Thanh Nha",true));
-
+        getAllAccountYoutube().forEach(accountSocial -> {
+            accounts.add( new Youtube(
+                    ((com.example.selenium.pojo.Youtube)accountSocial).getChanelID(),
+                    ((com.example.selenium.pojo.Youtube)accountSocial).getName(),
+                    accountSocial.getStatus().equals("ACTIVE")
+            ));
+        });
         List<HBox> listAccounts = new ArrayList<>();
         try {
             ListIterator<Youtube> iterator = accounts.listIterator();
@@ -81,4 +83,47 @@ public class AccountYoutubeService implements IAccountYoutubeService{
         );
         return true;
     }
+
+    @Override
+    public List<AccountSocial> getAllAccountYoutube() {
+        List<AccountSocial> accounts = new ArrayList<>();
+        Objects.requireNonNull(FileHandler.getAllFileOnDirectory(CurrentDirectory.currentDirectoryYoutube)).forEach(
+                file -> {
+                    if(file.exists() && file.getName().endsWith(".dat")){
+                        AccountSocial account = Mapper.mapStringToAccountYoutube(
+                                EncryptRSA.decryption(FileHandler.readFile(file))
+                        );
+                        accounts.add(account);
+                    }
+                }
+        );
+        return accounts;
+    }
+
+    @Override
+    public void setStatus(String channelID, String status)  {
+        AccountSocial accountYoutube =  Mapper.mapStringToAccountYoutube(
+                EncryptRSA.decryption(FileHandler.readFile(
+                        new File( CurrentDirectory.currentDirectoryYoutube + channelID+".dat"))));
+        accountYoutube.setStatus(status);
+        String encryptInformation = Mapper.mapAccountYoutubeToString(accountYoutube);
+        EncryptRSA.encryption(encryptInformation,
+                new File(CurrentDirectory.currentDirectoryYoutube + channelID+".dat")
+        );
+    }
+
+    @Override
+    public void deleteAccountTiktok(String channelID) {
+        String pathProfile = "D:\\Youtube\\ChromeProfile\\Youtube\\" + getAccountYoutube(channelID).getProfile();
+        if(!Directory.deleteDirectory(pathProfile)) System.out.println("Delete profile account unsuccessful!");
+        String pathInformation = CurrentDirectory.currentDirectoryYoutube + channelID+".dat";
+        if(!FileHandler.deleteFile(pathInformation)) System.out.println("Delete account unsuccessful!");
+    }
+    public AccountSocial getAccountYoutube(String channelID){
+        return Mapper.mapStringToAccountYoutube(
+                EncryptRSA.decryption(
+                        FileHandler.readFile(
+                                new File(CurrentDirectory.currentDirectoryYoutube+channelID+".dat"))));
+    }
+
 }

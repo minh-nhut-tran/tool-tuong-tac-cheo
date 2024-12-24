@@ -37,8 +37,8 @@ public class TableTiktokController implements Initializable {
         accountService = new AccountService();
     }
 
-    public void  setInformation(int no,String tiktokID, String name,boolean status){
-        this.no.setText(String.valueOf(no+1));
+    public void  setInformation(int no,String tiktokID, String name, boolean status){
+        this.no.setText(String.valueOf(no + 1));
         this.tiktokID.setText(tiktokID);
         this.name.setText(name);
         if(status){
