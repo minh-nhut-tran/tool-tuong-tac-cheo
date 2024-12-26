@@ -312,7 +312,7 @@
                               </Label>
                               <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #23A31C; -fx-background-radius: 10;" text="Run" textFill="WHITE">
+                                    <Button onAction="#run" userData="youtube" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #23A31C; -fx-background-radius: 10;" text="Run" textFill="WHITE">
                                        <font>
                                           <Font name="System Bold" size="17.0" />
                                        </font>
@@ -346,8 +346,8 @@
                                           </Label>
                                           <MenuButton fx:id="modeYoutube" alignment="CENTER" mnemonicParsing="false" prefWidth="150.0" style="-fx-background-color: #2E3239;" styleClass="border-color-element" stylesheets="@home-view-css.css" text="Auto" textFill="WHITE">
                                              <items>
-                                                <MenuItem mnemonicParsing="false" text="Auto" />
-                                                <MenuItem mnemonicParsing="false" text="Customize" />
+                                                <MenuItem onAction="#setMode" fx:id="modeYoutubeAuto" userData="youtubeAuto" mnemonicParsing="false" text="Auto" />
+                                                <MenuItem onAction="#setMode" fx:id="modeYoutubeCustomize" userData="youtubeCustomize" mnemonicParsing="false" text="Customize" />
                                              </items>
                                              <font>
                                                 <Font size="15.0" />
@@ -365,7 +365,7 @@
                                                 <Font name="System Bold" size="15.0" />
                                              </font>
                                           </Label>
-                                          <TextField alignment="CENTER" prefHeight="25.0" prefWidth="80.0" promptText="10" style="-fx-background-color: transparent;" styleClass="border-color-element" stylesheets="@home-view-css.css" text="10" HBox.hgrow="NEVER">
+                                          <TextField fx:id="followYoutube" alignment="CENTER" prefHeight="25.0" prefWidth="80.0" promptText="10" style="-fx-background-color: transparent;" styleClass="border-color-element" stylesheets="@home-view-css.css" text="10" HBox.hgrow="NEVER">
                                              <font>
                                                 <Font size="15.0" />
                                              </font>
@@ -379,7 +379,7 @@
                                                 <Font name="System Bold" size="15.0" />
                                              </font>
                                           </Label>
-                                          <TextField alignment="CENTER" prefWidth="80.0" style="-fx-background-color: transparent;" styleClass="border-color-element" stylesheets="@home-view-css.css" text="10">
+                                          <TextField fx:id="commentYoutube" alignment="CENTER" prefWidth="80.0" style="-fx-background-color: transparent;" styleClass="border-color-element" stylesheets="@home-view-css.css" text="10">
                                              <font>
                                                 <Font size="15.0" />
                                              </font>

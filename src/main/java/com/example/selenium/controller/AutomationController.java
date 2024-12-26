@@ -46,6 +46,12 @@ public class AutomationController  implements Initializable {
     private TextField loveTiktok;
 
     @FXML
+    private TextField followYoutube;
+
+    @FXML
+    private TextField commentYoutube;
+
+    @FXML
     private MenuButton modeFacebook;
 
     @FXML
@@ -62,6 +68,12 @@ public class AutomationController  implements Initializable {
 
     @FXML
     private MenuButton modeTiktok;
+
+    @FXML
+    private MenuItem modeYoutubeAuto;
+
+    @FXML
+    private MenuItem modeYoutubeCustomize;
 
     @FXML
     private MenuButton modeYoutube;
@@ -103,6 +115,14 @@ public class AutomationController  implements Initializable {
                this.modeTiktok.setText(this.modeTiktokCustomize.getText());
                disableCustomizeTiktokTask(false);
                break;
+           case "youtubeAuto":
+               this.modeYoutube.setText(this.modeYoutubeAuto.getText());
+               disableCustomizeYoutubeTask(true);
+               break;
+           case "youtubeCustomize":
+               this.modeYoutube.setText(this.modeYoutubeCustomize.getText());
+               disableCustomizeYoutubeTask(false);
+               break;
            default:
        }
 
@@ -117,6 +137,11 @@ public class AutomationController  implements Initializable {
     private void disableCustomizeTiktokTask(boolean disable){
         this.followTiktok.setDisable(disable);
         this.loveTiktok.setDisable(disable);
+    }
+
+    private void disableCustomizeYoutubeTask(boolean disable){
+        this.followYoutube.setDisable(disable);
+        this.commentYoutube.setDisable(disable);
     }
 
     @FXML
@@ -139,14 +164,18 @@ public class AutomationController  implements Initializable {
         String type = ((Node)event.getSource()).getUserData().toString();
         switch (type){
             case "facebook":
-                Map<String,Integer> tasks = new HashMap<>();
-                tasks.put("likePostFacebook",Integer.valueOf(this.likePostFacebook.getText()));
-                tasks.put("likePageFacebook",Integer.valueOf(this.likePageFacebook.getText()));
-                tasks.put("followFacebook",Integer.valueOf(this.followFacebook.getText()));
-                tasks.put("emotionFacebook",Integer.valueOf(this.emotionFacebook.getText()));
-                automationService.run("facebook",this.accountData,tasks);
+                Map<String,Integer> tasksFacebook = new HashMap<>();
+                tasksFacebook.put("likePostFacebook",Integer.valueOf(this.likePostFacebook.getText()));
+                tasksFacebook.put("likePageFacebook",Integer.valueOf(this.likePageFacebook.getText()));
+                tasksFacebook.put("followFacebook",Integer.valueOf(this.followFacebook.getText()));
+                tasksFacebook.put("emotionFacebook",Integer.valueOf(this.emotionFacebook.getText()));
+                automationService.run("facebook",this.accountData,tasksFacebook);
                 break;
             case "youtube":
+                Map<String,Integer> tasksYoutube = new HashMap<>();
+                tasksYoutube.put("commentYoutube",Integer.valueOf(this.commentYoutube.getText()));
+                tasksYoutube.put("followYoutube",Integer.valueOf(this.followYoutube.getText()));
+                automationService.run("youtube",this.accountData,tasksYoutube);
                 break;
             case "tiktok":
                 Map<String,Integer> tasksTiktok = new HashMap<>();
