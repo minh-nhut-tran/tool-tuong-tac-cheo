@@ -87,7 +87,7 @@ public class AccountTiktokService implements IAccountTiktokService{
 
     @Override
     public void deleteAccountTiktok(String tiktokID)  {
-        String pathProfile = "D:\\Youtube\\ChromeProfile\\Facebook\\" + getAccountTiktok(tiktokID).getProfile();
+        String pathProfile = "D:\\Youtube\\ChromeProfile\\Tiktok\\" + getAccountTiktok(tiktokID).getProfile();
         if(!Directory.deleteDirectory(pathProfile)) System.out.println("Delete profile account unsuccessful!");
         String pathInformation = CurrentDirectory.currentDirectoryTiktok + tiktokID+".dat";
         if(!FileHandler.deleteFile(pathInformation)) System.out.println("Delete account unsuccessful!");

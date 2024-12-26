@@ -3,6 +3,7 @@ package com.example.selenium.common;
 import com.example.selenium.pojo.AccountSocial;
 import com.example.selenium.pojo.Facebook;
 import com.example.selenium.pojo.Tiktok;
+import com.example.selenium.pojo.Youtube;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -66,6 +67,30 @@ public class Mapper {
             account.setProfile(StringHandler.getValueFromKeyInString(accountString,"profile"));
             ((Tiktok)account).setTiktokID(StringHandler.getValueFromKeyInString(accountString,"tiktokId"));
             ((Tiktok)account).setName(StringHandler.getValueFromKeyInString(accountString,"name"));
+            return account;
+        }
+
+        public static String mapAccountYoutubeToString(AccountSocial account){
+            Map<String,String> accountYoutube = new HashMap<>();
+            accountYoutube.put("username",account.getUsername());
+            accountYoutube.put("password",account.getPassword());
+            accountYoutube.put("cookie",account.getCookie());
+            accountYoutube.put("status",account.getStatus());
+            accountYoutube.put("profile",account.getProfile());
+            accountYoutube.put("channelID",((Youtube)account).getChanelID());
+            accountYoutube.put("name",((Youtube)account).getName());
+            return accountYoutube.toString();
+        }
+
+        public static AccountSocial mapStringToAccountYoutube(String accountString){
+            AccountSocial account = new Youtube();
+            account.setUsername(StringHandler.getValueFromKeyInString(accountString,"username"));
+            account.setPassword(StringHandler.getValueFromKeyInString(accountString,"password"));
+            account.setCookie(StringHandler.getValueFromKeyInString(accountString,"cookie"));
+            account.setStatus(StringHandler.getValueFromKeyInString(accountString,"status"));
+            account.setProfile(StringHandler.getValueFromKeyInString(accountString,"profile"));
+            ((Youtube)account).setChanelID(StringHandler.getValueFromKeyInString(accountString,"channelID"));
+            ((Youtube)account).setName(StringHandler.getValueFromKeyInString(accountString,"name"));
             return account;
         }
 }

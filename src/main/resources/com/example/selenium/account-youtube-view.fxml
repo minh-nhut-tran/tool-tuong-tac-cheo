@@ -18,17 +18,17 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label prefWidth="250.0" text="ChanelID" textFill="WHITE">
+            <Label prefWidth="300.0" text="ChanelID" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label prefWidth="300.0" text="Name" textFill="WHITE">
+            <Label prefWidth="200.0" text="Name" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label prefWidth="100.0" text="Status" textFill="WHITE">
+            <Label alignment="CENTER" prefWidth="100.0" text="Status" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
