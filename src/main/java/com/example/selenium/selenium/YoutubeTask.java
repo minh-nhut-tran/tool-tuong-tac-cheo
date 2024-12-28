@@ -42,46 +42,44 @@ public class YoutubeTask {
 
     }
 
-    private void doTasks(WebDriver driver, int numberOfTasks, String urlTask, String type) throws InterruptedException {
-        if(numberOfTasks == 0) return;
-        int count = 0;
-        driver.get(urlTask);
-        Thread.sleep(5000);
-        for(WebElement task : getWebElementsTasks(driver)){
-            WebElement doTaskButton = task.findElement(By.cssSelector(".form-group.text-center button"));
-            String comment = null;
-            if(type.equals("commentYoutube")){
-                comment = getWebElementsComment(task).get(0).getText();
-            }
-            doTaskButton.click();
-            Thread.sleep(5000);
-            DirectWindows.switchScreenToNextWindow(driver);
-            // check and cookie facebook
-            Thread.sleep(5000);
-            switch (type){
-                case "commentYoutube":
-                    commentYoutube(driver, comment);
-                    break;
-                case "followYoutube":
-                    followYoutube(driver);
-                    break;
-            }
-            Thread.sleep(5000);
-            DirectWindows.closeTabAndSwitchToTabFirst(driver);
-            count++;
-            if(count != 0 && ( count == numberOfTasks || count % 4 == 0)){
-                getMoneyWhenDoneTask(driver);
-            }
-            Thread.sleep(5000);
-            if (count == numberOfTasks) return;
-        }
-        if(count < numberOfTasks){
-            doTasks(driver, numberOfTasks - count, urlTask, type);
-        }
+    private void doTasks(WebDriver driver, int numberOfTasks, String urlTask, String type) {
+       try {
+           if(numberOfTasks == 0) return;
+           int count = 0;
+           driver.get(urlTask);
+           Thread.sleep(5000);
+           for(WebElement task : getWebElementsTasks(driver)){
+               WebElement doTaskButton = task.findElement(By.cssSelector(".form-group.text-center button"));
+               String comment = null;
+               if(type.equals("commentYoutube")){
+                   comment = getWebElementsComment(task).get(0).getText();
+               }
+               doTaskButton.click();
+               Thread.sleep(5000);
+               DirectWindows.switchScreenToNextWindow(driver);
+               Thread.sleep(5000);
+               switch (type){
+                   case "commentYoutube":
+                       commentYoutube(driver, comment);
+                       break;
+                   case "followYoutube":
+                       followYoutube(driver,count);
+                       break;
+               }
+               count++;
+               Thread.sleep(5000);
+               if (count == numberOfTasks) return;
+           }
+           if(count < numberOfTasks){
+               doTasks(driver, numberOfTasks - count, urlTask, type);
+           }
+       }catch (Exception e){
+            e.printStackTrace();
+       }
 
     }
 
-    private void followYoutube(WebDriver driver) throws InterruptedException {
+    private void followYoutube(WebDriver driver, int count) throws InterruptedException {
         Thread.sleep(60000);
         WebElement buttonFollow = SeleniumHandler.getElementFromXpaths(new String[]{
                 "//yt-button-shape[@id='subscribe-button-shape']"
@@ -91,13 +89,21 @@ public class YoutubeTask {
                 buttonFollow.click();
             }catch (Exception ignored){}
         }
+        Thread.sleep(5000);
+        DirectWindows.closeTabAndSwitchToTabFirst(driver);
+        if(count != 0 && count % 4 == 0){
+            getMoneyWhenDoneTask(driver);
+        }
     }
 
     private void commentYoutube(WebDriver driver, String comment) throws InterruptedException {
         if(comment == null) return;
-        Thread.sleep(60000);
+        Thread.sleep(1000);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollTo(0, 300)");
+        Thread.sleep(5000);
         WebElement clickComment = SeleniumHandler.getElementFromXpaths(new String[]{
-                "//yt-formatted-string[@id='simplebox-placeholder']"
+                "//div[@id='placeholder-area']"
         },driver);
         if(clickComment == null) return;
         clickComment.click();
@@ -106,7 +112,6 @@ public class YoutubeTask {
                 "//div[@id='contenteditable-root']"
         },driver);
         if(inputComment != null){
-            ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", inputComment);
             inputComment.sendKeys(comment);
             Thread.sleep(5000);
             try{
@@ -146,5 +151,6 @@ public class YoutubeTask {
         WebElement buttonGetMoney = SeleniumHandler.getElementFromXpaths(new String[]{"//button[@id='nhanall']"}, driver);
         if(buttonGetMoney != null) buttonGetMoney.click();
     }
+    
 
 }
