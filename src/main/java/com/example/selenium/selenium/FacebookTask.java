@@ -234,7 +234,6 @@ public class FacebookTask {
     }
 
     private void checkAndAddCookieFacebook(WebDriver driver) throws InterruptedException {
-
         if(((Facebook)accountSocials.get(0)).getType().equals("PAGE")){
             if( driver.manage().getCookieNamed("i_user") == null
                     || Objects.requireNonNull(driver.manage().getCookieNamed("i_user")).getValue().isEmpty()
